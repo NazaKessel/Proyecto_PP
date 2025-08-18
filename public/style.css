@@ -1,490 +1,245 @@
-@import url(media.css);
 
-/* Variables de Colores - ¡Nueva Paleta! */
-:root {
-    /* Marrones Oscuros / Casi Negros */
-    --color-marron-oscuro-base: #2D1F1C;   /* Para fondos principales oscuros (header, footer), texto principal */
-    --color-marron-oscuro-acento: #3A2C29; /* Para sombras, bordes de elementos oscuros */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-    /* Marrones Medios */
-    --color-marron-medio-fondo: #5B4842;   /* Para fondos de secciones o cards con más calidez */
-    --color-marron-medio-texto: #7A675B;   /* Para texto secundario, descripciones */
 
-    /* Beiges / Crema */
-    --color-beige-claro: #D4C4B5;     /* Para fondos de cards más claros, detalles */
-    --color-beige-muy-claro: #E1D8CE; /* Para fondos de secciones muy ligeros, acentos */
-
-    /* Azul Grisáceo / Cian - ¡El acento! */
-    --color-cian-acento: #65909B;      /* Para botones, enlaces, elementos interactivos, precios */
-    --color-cian-claro: #7AA8B1;       /* Para hover de acentos, sutiles fondos interactivos */
-
-    /* Blanco puro para contraste */
-    --color-blanco: #FFFFFF;
+:root{
+ --rosa : #f178a6;
+ --rosaClaro: #ee9dbc;
+ --fondo: #eed9ac;
+ --footer: #a38f63;
+ --a: #221c1c;
+}
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+    font-family: "Noto Sans"
 }
 
-/* Estilos Generales */
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-beige-muy-claro); /* Fondo general en un beige muy claro */
-    color: var(--color-marron-oscuro-base); /* Color principal del texto */
-    line-height: 1.6;
+.main-content-wrapper {
+    display: flex;
+    flex-direction: column; 
+    gap: 30px;
 }
 
-h1, h2, h3 {
-    color: var(--color-marron-oscuro-base); /* Títulos en marrón oscuro */
-    text-align: center;
-    margin-bottom: 20px;
+h2{
+    padding-left: 20px;
 }
 
-a {
+.header a{
+    color: var(--a);
     text-decoration: none;
-    color: var(--color-cian-acento); /* Enlaces en el color de acento cian */
+    margin: 0.5rem;
 }
-
-a:hover {
-    color: var(--color-marron-oscuro-base); /* Hover de enlaces en marrón oscuro */
+a:hover{
+    color: var(--rosa);
 }
-
-.boton-llamar-a-la-accion, .boton-ver-detalles, .boton-promocion {
-    display: inline-block;
-    background-color: var(--color-cian-acento); /* Botones en cian */
-    color: var(--color-blanco);
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.boton-llamar-a-la-accion:hover, .boton-ver-detalles:hover, .boton-promocion:hover {
-    background-color: var(--color-marron-oscuro-base); /* Hover de botones en marrón oscuro */
-}
-
-/* Header */
-.encabezado {
-    background-color: var(--color-marron-oscuro-base); 
-    color: var(--color-blanco);
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
-
-.logo img {
-    width: 40px;
-    height: 40px;
-    max-width: 100px;
-    height: auto;
-    filter: invert(100%); /* Opcional: si tu logo es oscuro y quieres que se vea blanco sobre el fondo oscuro */
-}
-
-/* Botón de Menú Hamburguesa */
-.boton-menu-hamburguesa {
-    background: none;
-    border: none;
-    color: var(--color-white); /* Color blanco para el icono */
-    font-size: 2.2em;
-    cursor: pointer;
-    padding: 0 10px;
-    line-height: 1;
-    display: block;
-}
-
-/* Navegación (Menú Desplegable) - Pequeño y sutil con la nueva paleta */
-.navegacion {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 200px;
-    background-color: var(--color-marron-medio-fondo); /* Fondo del menú en marrón medio */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: none;
-    z-index: 100;
-    border-radius: 0 0 8px 8px;
-    overflow: hidden;
-}
-
-.navegacion.mostrar-menu {
-    display: block;
-}
-
-.lista-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.lista-menu li a {
-    color: var(--color-beige-muy-claro); /* Texto de los ítems en beige muy claro */
-    padding: 10px 15px;
-    display: block;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil blanco */
-    transition: background-color 0.3s ease;
-    font-size: 0.9em;
-}
-
-.lista-menu li:last-child a {
-    border-bottom: none;
-}
-
-.lista-menu li a:hover {
-    background-color: var(--color-marron-oscuro-acento); /* Hover en marrón oscuro acento */
-    color: var(--color-blanco); /* Texto blanco en hover */
-}
-
-/* Banner Principal */
-.seccion-banner-principal {
-    background-image: url(img/banner.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--color-blanco);
-    margin-bottom: 30px;
-}
-
-.seccion-banner-principal img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    /* Ajustar si las imágenes de placeholder necesitan un tinte para que coincidan mejor */
-    /* filter: grayscale(50%) sepia(30%) hue-rotate(30deg) saturate(150%); */
-}
-
-.seccion-banner-principal .contenido-banner {
-    background-color: rgba(45, 31, 28, 0.322); 
-    padding: 10%;
-}
-
-.seccion-banner-principal h1 {
-    color: var(--color-blanco);
-    font-size: 1.8em;
-    margin-bottom: 10px;
-}
-
-.seccion-banner-principal p {
-    font-size: 1em;
-    margin-bottom: 20px;
-}
-
-/* Marcas de Autos */
-.seccion-marcas-autos {
-    padding: 20px;
-    background-color: var(--color-beige-muy-claro); /* Fondo de la sección en beige muy claro */
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-.contenedor-marcas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
-
-.card-marca {
-    flex-shrink: 0;
-    width: 120px;
-    height: 120px;
-    background-color: var(--color-beige-claro); /* Fondo de la card de marca en beige claro */
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    text-align: center;
-    overflow: hidden;
-}
-
-.card-marca:hover {
-    transform: translateY(-5px);
-    background-color: var(--color-marron-medio-fondo); /* Hover en marrón medio */
-}
-
-.card-marca img {
-    width: 80px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: auto;
-    margin-bottom: 5px;
-    /* Considerar filtros si las imágenes de marca no son monocromáticas */
-    /* filter: grayscale(100%) brightness(50%); */
-}
-
-.card-marca p {
-    margin: 0;
-    font-size: 0.9em;
-    color: var(--color-marron-oscuro-base);
-    font-weight: bold;
-}
-
-/* Banner Promocional Angosto */
-.seccion-banner-promocional {
-    position: relative;
-    width: 100%;
-    height: 150px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--color-blanco);
-    margin-bottom: 30px;
-}
-
-.seccion-banner-promocional img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    /* filter: grayscale(70%) sepia(50%) hue-rotate(10deg) saturate(120%); */
-}
-
-.seccion-banner-promocional .contenido-banner-promocional {
-    background-color: rgba(45, 31, 28, 0.7); /* Usando --color-marron-oscuro-base con transparencia */
-    padding: 15px;
-    border-radius: 8px;
-    max-width: 80%;
-}
-
-.seccion-banner-promocional h3 {
-    color: var(--color-blanco);
-    font-size: 1.4em;
-    margin-bottom: 8px;
-}
-
-.seccion-banner-promocional p {
-    font-size: 0.9em;
-    margin-bottom: 15px;
-}
-
-/* Productos (Autos) */
-.seccion-productos {
-    padding: 20px;
-    background-color: var(--color-beige-muy-claro); /* Fondo de la sección en beige muy claro */
-    margin-bottom: 30px;
-}
-
-.contenedor-productos {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-}
-
-.card-auto {
-    background-color: var(--color-beige-claro); /* Fondo de la card en beige claro */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-bottom: 15px;
-}
-
-.card-auto img {
+footer{
     width: 100%;
     height: 200px;
-    object-fit: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    /* Puedes aplicar filtros a las imágenes de los autos para que encajen con la paleta si no son fotos profesionales */
-    /* filter: grayscale(10%) sepia(5%) brightness(95%); */
+    max-width: 100%;
+    background: var(--footer);
 }
 
-.card-auto .info-auto {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.header{
     width: 100%;
+    max-width: 100%;
+    height: 60px;
+    background-color: #e6e6e6;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.199);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
-.card-auto h3 {
-    margin: 0;
-    font-size: 1.3em;
-    color: var(--color-marron-oscuro-base);
+.nv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.card-auto p {
-    font-size: 0.9em;
-    color: var(--color-marron-medio-texto); /* Texto de descripción en marrón medio */
-    margin: 0;
+.banner{
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
-
-.card-auto .precio {
-    font-size: 1.2em;
+.info_personal{
+    padding: 20px;
+}
+.info_personal h1{
+    font-size: 60px;
     font-weight: bold;
-    color: var(--color-cian-acento); /* Precio en color de acento cian */
+}
+.info_personal p{
+    margin: 0 30px 0 0;
+}
+/* From Uiverse.io by MUJTABA201566 */ 
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(32, 26, 26);
 }
 
-.card-auto .boton-ver-detalles {
-    width: 80%;
-    margin: 0 auto;
-    padding: 8px 15px;
-    font-size: 0.9em;
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Estilos de Cards de Autos Variados */
-/* Estilo Uno: Predeterminado */
-
-/* Estilo Dos: Título más grande, sin precio */
-.card-auto.estilo-dos h3 {
-    font-size: 1.5em;
-}
-.card-auto.estilo-dos .precio {
-    display: none;
+.sign svg {
+  width: 17px;
 }
 
-/* Estilo Tres: Bordes más redondeados, texto centrado */
-.card-auto.estilo-tres {
+.sign svg path {
+  fill: rgb(255, 255, 255);
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 0.5em;
+  font-weight: 600;
+  transition-duration: 0.3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  background-color: var(--rosa);
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: 0.3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: 0.3s;
+  padding-left: 20px;
+}
+
+.Btn:hover .sign svg path {
+  fill: white;
+}
+
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: 0.3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px, 2px);
+}
+
+
+
+.diseños .card1{
+    width: 200px;
+    height: 300px;
+    border: solid 1px black;
+    border-radius: 20px;
+    background: gray;
+    display: flex;
+    position: absolute;
+}
+.diseños .card2{
+    width: 200px;
+    height: 200px;
+    border: solid 1px black;
+    border-radius: 20px;
+    background: gray;
+    display: flex;
+    position: relative;
+    margin-left: 230px;
+}
+.diseños .card3{
+    width: 200px;
+    height: 150px;
+    border: solid 1px black;
+    border-radius: 20px;
+    background: gray;
+    display: flex;
+    position: relative;
+    margin-left: 230px;
+    margin-top: 30px;
+}
+.conocimiento{
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+.cardC{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background: gray;
+    margin: 0 20px;
+
+background: linear-gradient(225deg, #e6e6e6, #ffffff);
+box-shadow:  -50px 50px 100px #a1a1a1,
+             50px -50px 100px #ffffff;
+}
+
+.historial{
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 0 20px;
+}
+.historial .mejor_proyec, p{
+    width: 90%;
+}
+.historial .card_Mp{
+    width: 90%;
+    height: 250px;
+    background: gray;
+    border: solid 1px black;
     border-radius: 20px;
 }
-.card-auto.estilo-tres img {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+.biblioteca{
+    display: grid;
+    grid-template-columns: 20% 70%;
 }
-
-/* Estilo Cuatro: Imagen abajo, texto arriba */
-.card-auto.estilo-cuatro {
-    flex-direction: column-reverse;
-}
-.card-auto.estilo-cuatro img {
-    border-radius: 0 0 10px 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-/* Estilo Cinco: Fondo ligeramente diferente */
-.card-auto.estilo-cinco {
-    background-color: var(--color-marron-medio-fondo); /* Fondo diferente para card */
-    color: var(--color-beige-muy-claro);
-}
-.card-auto.estilo-cinco h3,
-.card-auto.estilo-cinco p,
-.card-auto.estilo-cinco .precio {
-    color: var(--color-beige-muy-claro);
-}
-.card-auto.estilo-cinco .boton-ver-detalles {
-    background-color: var(--color-cian-acento);
-    color: var(--color-blanco);
-}
-.card-auto.estilo-cinco .boton-ver-detalles:hover {
-    background-color: var(--color-marron-oscuro-base);
-}
-
-/* Estilo Seis: Texto en una columna, imagen en otra para simular flexibilidad (más útil en pantallas grandes) */
-.card-auto.estilo-seis .info-auto {
-    padding: 25px 15px;
-}
-
-
-/* Promociones */
-.seccion-promociones {
-    padding: 20px;
-    background-color: var(--color-marron-medio-fondo); /* Fondo de la sección de promociones en marrón medio */
-    margin-bottom: 30px;
-    color: var(--color-beige-muy-claro); /* Texto de la sección en beige muy claro */
-}
-
-.seccion-promociones h2 {
-    color: var(--color-beige-muy-claro); /* Título de la sección en beige muy claro */
-}
-
-.contenedor-promociones {
+.biblioteca .cardB{
+    width: 100px;
+    height: 100px;
+    border: solid 1px black;
+    border-radius: 20px;
+    background: gray;
+    margin: 0 0 20px 0;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 
-.card-promocion {
-    background-color: var(--color-beige-claro); /* Fondo de la card de promoción en beige claro */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--color-marron-oscuro-base); /* Texto general de la card en marrón oscuro base */
-}
-
-.card-promocion h3 {
-    margin-top: 0;
-    font-size: 1.3em;
-    color: var(--color-marron-oscuro-base);
-}
-
-.card-promocion p {
-    font-size: 0.9em;
-    color: var(--color-marron-medio-texto);
-    margin-bottom: 15px;
-}
-
-.card-promocion img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    /* filter: sepia(30%) saturate(120%); */
-}
-
-/* Estilos de Cards de Promoción Variados */
-
-/* Promoción Uno: Fondo en cian claro para destacar una oferta */
-.card-promocion.promocion-uno {
-    background-color: var(--color-cian-claro);
-    color: var(--color-beige-muy-claro);
-}
-.card-promocion.promocion-uno h3,
-.card-promocion.promocion-uno p {
-    color: var(--color-marron-oscuro-base);
-    font-weight: bold;
-}
-.card-promocion.promocion-uno .boton-promocion {
-    background-color: var(--color-marron-oscuro-base);
-    color: var(--color-white);
-}
-.card-promocion.promocion-uno .boton-promocion:hover {
-    background-color: var(--color-cian-acento);
-}
-
-/* Promoción Dos: Borde destacado en cian acento */
-.card-promocion.promocion-dos {
-    border: 2px solid var(--color-cian-acento);
-}
-
-/* Promoción Tres: Con imagen, alineación vertical */
-.card-promocion.promocion-tres {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-/* Pie de Página */
-.pie-pagina {
-    background-color: var(--color-marron-oscuro-base); /* Fondo del pie en marrón oscuro base */
-    color: var(--color-marron-medio-texto); /* Texto del pie en marrón medio */
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
+/* carousel FODA */
+.carousel{
+    width: 100%;
+    height: 400px;
+    border: solid 1px red;
+    position: absolute;
+    color: black;
+} 
+.carousel-item{
+    background: gray;
 }

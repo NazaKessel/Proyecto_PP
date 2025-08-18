@@ -1,14 +1,4 @@
 @import url(style.css);
 @media ((min-width: 500px) and (max-width: 800px)){
-    .seccion-banner-principal .contenido-banner{
-        background: none;
-    }
-    .card-auto{
-        width: 300px;
-    }
-    .seccion-productos{
-    display: flex;
-    flex-direction: row;
-    
-    }
+
 }
