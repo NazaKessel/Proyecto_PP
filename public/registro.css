@@ -1,0 +1,69 @@
+@import url(style.css);
+
+/* Variables de Colores - ¡Nueva Paleta! */
+:root {
+    /* Marrones Oscuros / Casi Negros */
+    --color-marron-oscuro-base: #2D1F1C;   /* Para fondos principales oscuros (header, footer), texto principal */
+    --color-marron-oscuro-acento: #3A2C29; /* Para sombras, bordes de elementos oscuros */
+
+    /* Marrones Medios */
+    --color-marron-medio-fondo: #5B4842;   /* Para fondos de secciones o cards con más calidez */
+    --color-marron-medio-texto: #7A675B;   /* Para texto secundario, descripciones */
+
+    /* Beiges / Crema */
+    --color-beige-claro: #D4C4B5;     /* Para fondos de cards más claros, detalles */
+    --color-beige-muy-claro: #E1D8CE; /* Para fondos de secciones muy ligeros, acentos */
+
+    /* Azul Grisáceo / Cian - ¡El acento! */
+    --color-cian-acento: #65909B;      /* Para botones, enlaces, elementos interactivos, precios */
+    --color-cian-claro: #7AA8B1;       /* Para hover de acentos, sutiles fondos interactivos */
+
+    /* Blanco puro para contraste */
+    --color-blanco: #FFFFFF;
+}
+
+body{
+    background-color: var(--color-blanco) ;
+}
+.titulo h1
+{
+    background-color: var(--color-marron-oscuro-base);
+    color: var(--color-beige-muy-claro);
+    margin: 0;
+    padding: 20px;
+}
+
+.registro{
+    background-color: var(--color-beige-muy-claro);
+    border: 2px solid var(--color-marron-oscuro-base);
+    border-radius: 15px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+    padding-bottom: 130px;
+    margin: 40px;
+}
+
+label{
+    color: #2D1F1C;
+    font-size: 20px;
+}
+input{
+    padding: 4px;
+    font-size: 17px;
+    border: 2px solid var(--color-marron-medio-texto);
+}
+select{
+    padding: 4px;
+    font-size: 16px;
+    border: 2px solid var(--color-marron-medio-texto);
+}
+
+.boton{
+    padding: 10px;
+    display: block;
+    margin: auto;
+    color: var(--color-marron-oscuro-base);
+    border: 2px solid var(--color-marron-medio-texto);
+}
