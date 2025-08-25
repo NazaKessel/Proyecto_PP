@@ -162,6 +162,14 @@ footer{
 }
 
 
+.cardC{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cardC:hover{
+    color: #f178a6;
+}
 
 .diseños .card1{
     width: 200px;
