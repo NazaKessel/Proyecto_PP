@@ -1,0 +1,16 @@
+@import url(style.css);
+@import url(media.css);
+
+.administracion{
+    width: 250px;
+    height: 800px;
+    background: white;
+    padding: 20px;
+}
+li{
+    color: var(--a);
+}
+li:hover{
+    color: var(--ahover);
+}
+
