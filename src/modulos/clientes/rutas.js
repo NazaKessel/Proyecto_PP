@@ -1,9 +1,11 @@
 const express = require('express');
 
+const respuesta = require('../../red/respuestas');
+
 const router = express.Router();
 
 router.get('/', function (req, res) {
-    res.send('Clientes ok')
+    respuesta.success(req, res, 'Funcionando', 200)
 });
 
 module.exports = router;
