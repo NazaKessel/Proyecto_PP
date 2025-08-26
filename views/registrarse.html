@@ -1,54 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrarse</title>
   <link rel="stylesheet" href="../public/registro.css">
 </head>
+
 <body>
 
   <div class="titulo">
-    <h1>Registrarse</h1>
+    <button type="button" class="btn-volver">←</button>
+    <h1>Thames Car</h1>
   </div>
+
+  <h2>Crea tu cuenta y encontra te vehiculo ideal</h2>
 
   <div class="registro">
 
-  <form action="/registro" method="post" onsubmit="return validarContrasenas()">
+    <form action="../src/database/registrarse.php" method="post" onsubmit="return validarContrasenas()">
 
-    <label for="nombre">Nombre:</label><br>
-    <input type="text" id="nombre" name="nombre" required><br><br>
+      <label for="nombre">Nombre</label><br>
+      <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre"><br><br>
 
-    <label for="apellido">Apellido:</label><br>
-    <input type="text" id="apellido" name="apellido" required><br><br>
+      <label for="apellido">Apellido</label><br>
+      <input type="text" id="apellido" name="apellido" required placeholder="Ingresa tu apellido"><br><br>
 
-    <label for="email">Correo electrónico:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
+      <label for="email">Correo electrónico</label><br>
+      <input type="email" id="email" name="email" required placeholder="Ingresar correo electrónico"><br><br>
 
-    <label for="ciudad">Ciudad:</label><br>
-    <select id="ciudad" name="ciudad" required>
-      <option value="San Nicolás de los Arroyos">San Nicolás de los Arroyos</option>
-    </select><br><br>
+      <label for="ciudad">Ciudad</label><br>
+      <select id="ciudad" name="ciudad" required>
+        <option value="San Nicolás de los Arroyos">San Nicolás de los Arroyos</option>
+      </select><br><br>
 
-    <label for="direccion">Dirección:</label><br>
-    <input type="text" id="direccion" name="direccion" required><br><br>
+      <label for="direccion">Dirección</label><br>
+      <input type="text" id="direccion" name="direccion" required placeholder="Ingresar direccion"><br><br>
 
-    <label for="password">Contraseña:</label><br>
-    <input type="password" id="password" name="password" required>
-    <button type="button" onclick="togglePassword('password')">👁️</button><br><br>
+      <label for="password">Contraseña</label><br>
+      <input type="password" id="password" name="password" required placeholder="Contraseña">
+      <button type="button" onclick="togglePassword('password')">👁️</button><br><br>
 
-    <label for="confirmar">Confirmar contraseña:</label><br>
-    <input type="password" id="confirmar" name="confirmar" required>
-    <button type="button" onclick="togglePassword('confirmar')">👁️</button><br><br>
+      <label for="confirmar">Confirmar contraseña</label><br>
+      <input type="password" id="confirmar" name="confirmar" required placeholder="Contraseña">
+      <button type="button" onclick="togglePassword('confirmar')">👁️</button><br><br>
 
-    <input class="boton" type="submit" value="Registrarse">
+      <input class="boton" type="submit" value="Registrarse">
 
-  </form>
+    </form>
   </div>
 
   <footer class="pie-pagina">
-        <p>&copy; 2025 Concesionaria de Autos. Todos los derechos reservados.</p>
-    </footer>
+    <p>&copy; 2025 Concesionaria de Autos. Todos los derechos reservados.</p>
+  </footer>
 
 
 
@@ -74,4 +79,5 @@
   </script>
 
 </body>
+
 </html>

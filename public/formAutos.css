@@ -22,10 +22,6 @@
     --color-blanco: #FFFFFF;
 }
 
-body{
-    background-color: var(--color-blanco) ;
-}
-
 .titulo{
     display: flex;
     gap: 20%;
@@ -52,24 +48,18 @@ label{
 }
 input{
     padding: 12px;
-    width: 100%;
+    width: 60%;
     margin: 2px;
     background-color: #e0e0e0;
     border: 1px solid #b3b3b3;
     color: grey;
     border-radius: 6px;
 }
-select{
-    background-color: #e0e0e0;
-    border: 1px solid #b3b3b3;
-    color: grey;
-    padding: 4px;
-    font-size: 16px;
-}
 
 .boton{
     padding: 10px;
-    margin: auto;
+    border: 0;
+    margin: 5px;
     background-color: #357ABD;
     color: white;
 
