@@ -1,0 +1,28 @@
+@import url(style.css);
+
+body{
+    background-color: #0C1324;
+}
+.titulo{
+    background-color: #050C20;
+    display: flex;
+    gap: 20%;
+    padding: 5px;
+    box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.5);
+}
+
+h1{
+    color: #357ABD;
+}
+
+.btn-volver {
+    background: #151B2D;   /* sin fondo */
+    border: none;       /* sin borde */
+    font-size: 20px;    /* tamaño de la flecha */
+    cursor: pointer;    /* cursor de mano */
+    padding: 5px;       /* un poco de espacio */
+}
+
+.tabla{
+    background-color: white;
+}

@@ -1,0 +1,41 @@
+<?php
+include 'tablaPedidos.php';
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administracion Thames Car</title>
+    <link rel="stylesheet" href="../public/indexAdmin.css">
+</head>
+<body>
+    <div class="titulo">
+        <button type="button" class="btn-volver">←</button>
+        <h1>Thames Car</h1>
+    </div>
+
+    <table border="1" class="tabla">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Otro Campo</th>
+        </tr>
+        <?php if (!empty($datos)): ?>
+            <?php foreach ($datos as $fila): ?>
+                <tr>
+                    <td><?= $fila['id'] ?></td>
+                    <td><?= $fila['nombre'] ?></td>
+                    <td><?= $fila['otro_campo'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="3">No hay datos</td>
+            </tr>
+        <?php endif; ?>
+    </table>
+    
+</body>
+</html>
