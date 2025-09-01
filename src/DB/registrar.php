@@ -1,17 +1,6 @@
 <?php
-// Datos de conexión
-$host = "localhost";
-$user = "root";      // Cambia por tu usuario de MySQL
-$pass = "";          // Cambia por tu contraseña de MySQL
-$db   = "thames";    // Nombre de tu base de datos
-
-// Conexión
-$conn = new mysqli($host, $user, $pass, $db);
-
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
+// incluir la conexión
+include("conexion.php");
 
 // Obtener datos del formulario
 $nombre    = $_POST['nombre'] ?? '';

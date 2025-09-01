@@ -3,60 +3,75 @@
 /* Variables de Colores - ¡Nueva Paleta! */
 :root {
     /* Marrones Oscuros / Casi Negros */
-    --color-marron-oscuro-base: #2D1F1C;   /* Para fondos principales oscuros (header, footer), texto principal */
-    --color-marron-oscuro-acento: #3A2C29; /* Para sombras, bordes de elementos oscuros */
+    --color-marron-oscuro-base: #2D1F1C;
+    /* Para fondos principales oscuros (header, footer), texto principal */
+    --color-marron-oscuro-acento: #3A2C29;
+    /* Para sombras, bordes de elementos oscuros */
 
     /* Marrones Medios */
-    --color-marron-medio-fondo: #5B4842;   /* Para fondos de secciones o cards con más calidez */
-    --color-marron-medio-texto: #7A675B;   /* Para texto secundario, descripciones */
+    --color-marron-medio-fondo: #5B4842;
+    /* Para fondos de secciones o cards con más calidez */
+    --color-marron-medio-texto: #7A675B;
+    /* Para texto secundario, descripciones */
 
     /* Beiges / Crema */
-    --color-beige-claro: #D4C4B5;     /* Para fondos de cards más claros, detalles */
-    --color-beige-muy-claro: #E1D8CE; /* Para fondos de secciones muy ligeros, acentos */
+    --color-beige-claro: #D4C4B5;
+    /* Para fondos de cards más claros, detalles */
+    --color-beige-muy-claro: #E1D8CE;
+    /* Para fondos de secciones muy ligeros, acentos */
 
     /* Azul Grisáceo / Cian - ¡El acento! */
-    --color-cian-acento: #65909B;      /* Para botones, enlaces, elementos interactivos, precios */
-    --color-cian-claro: #7AA8B1;       /* Para hover de acentos, sutiles fondos interactivos */
+    --color-cian-acento: #65909B;
+    /* Para botones, enlaces, elementos interactivos, precios */
+    --color-cian-claro: #7AA8B1;
+    /* Para hover de acentos, sutiles fondos interactivos */
 
     /* Blanco puro para contraste */
     --color-blanco: #FFFFFF;
 }
 
-.titulo{
+body {
+    background-color: #0C1324;
+    margin: 0;
+}
+
+.titulo {
+    background-color: #050C20;
     display: flex;
     gap: 20%;
-    padding: 5px;
     box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.5);
 }
 
-h1{
+h1 {
     color: #357ABD;
 }
 
-h2{
+h2 {
     padding: 10px;
     color: #2A5C91;
 }
 
-form{
+form {
     margin: 12px;
 }
 
-label{
+label {
     color: black;
     font-size: 20px;
+    color: grey;
 }
-input{
+
+input {
     padding: 12px;
     width: 60%;
     margin: 2px;
-    background-color: #e0e0e0;
+    background-color: #151B2D;
     border: 1px solid #b3b3b3;
     color: grey;
     border-radius: 6px;
 }
 
-.boton{
+.boton {
     padding: 10px;
     border: 0;
     margin: 5px;
@@ -66,13 +81,19 @@ input{
 }
 
 .btn-volver {
-    background: none;   /* sin fondo */
-    border: none;       /* sin borde */
-    font-size: 20px;    /* tamaño de la flecha */
-    cursor: pointer;    /* cursor de mano */
-    padding: 5px;       /* un poco de espacio */
+    background: #151B2D;
+    /* sin fondo */
+    border: none;
+    /* sin borde */
+    font-size: 20px;
+    /* tamaño de la flecha */
+    cursor: pointer;
+    /* cursor de mano */
+    padding: 15px;
+    /* un poco de espacio */
 }
 
 .btn-volver:hover {
-    color: #357ABD;     /* cambia de color al pasar el mouse */
+    color: #357ABD;
+    /* cambia de color al pasar el mouse */
 }

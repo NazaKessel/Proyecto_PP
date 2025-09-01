@@ -1,16 +1,6 @@
 <?php
-// Configuración de la conexión
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "thames";
-
-$conn = new mysqli($host, $user, $pass, $db);
-
-// Verificar conexión
-if ($conn->connect_error) {
-    die("❌ Conexión fallida: " . $conn->connect_error);
-}
+// incluir la conexión
+include("conexion.php");
 
 // Si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
