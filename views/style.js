@@ -19,3 +19,7 @@ prevButton.addEventListener('click', () => {
   currentIndex = (currentIndex - 1 + slides.length) % slides.length;
   updateSlide();
 });
+
+
+
+

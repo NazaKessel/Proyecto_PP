@@ -1,3 +1,16 @@
+<?php
+
+require '../src/DB/conexion.php';
+$db = new Database();
+$con = $db ->conectar();
+
+$sql = $con->prepare("SELECT id, marca, precio, modelo, foto FROM autos WHERE disponible = 1");
+$sql->execute();
+$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -85,36 +98,31 @@
     </section>
 
     <!-- Carrusel -->
-    <div class="carrusel">
-      <div class="card">
-        <img src="../public/img/autoprueba.jpg" alt="">
-        <div class="card-content">
-          <h3>$50.000</h3>
-          <p>Chevrolet Onix</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="../public/img/autoprueba.jpg" alt="">
-        <div class="card-content">
-          <h3>$70.000</h3>
-          <p>Toyota Corolla</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="../public/img/autoprueba.jpg" alt="">
-        <div class="card-content">
-          <h3>$90.000</h3>
-          <p>Volkswagen Golf</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="../public/img/autoprueba.jpg" alt="">
-        <div class="card-content">
-          <h3>$120.000</h3>
-          <p>BMW Serie 3</p>
-        </div>
-      </div>
+    <section class="carrusel">
+      <?php foreach($resultado as $row) { ?>
+        
+       <div class="card">
+        <!-- <h3 class="card-title">Llevate tu favorito</h3> -->
+        <?php 
+        $id = $row['id'];
+        $imagen = "../public/img/productos/$id/auto.jpg";
+        
+        if (!file_exists($imagen)){
+          $imagen = "../public/img/no-photo.jpg";
+        }
+        ?>
+        <img src=" <?php echo $imagen; ?>">
+        <p class="card-description"> <?php echo $row['marca']. " ". $row['modelo']; ?></p>
+        <p class="card-price">$ <?php echo $row['precio'];?></p>
+        <button> ver mas</button>
     </div>
+    <?php } ?>
+
+    </section>
+
+
+
+     </div>
 
     <!-- Preferencias -->
     <section class="preferencias">
@@ -153,6 +161,34 @@
   </footer>
 
 
+
+  <script>
+ document.addEventListener('DOMContentLoaded', function() {
+    const carrusel = document.getElementById('carrusel');
+    const btnLeft = document.getElementById('btn-left');
+    const btnRight = document.getElementById('btn-right');
+
+    btnRight.addEventListener('click', () => {
+        const cardWidth = carrusel.querySelector('.card').offsetWidth;
+        carrusel.scrollBy({
+            left: cardWidth + 15, // +15 por el gap entre tarjetas
+            behavior: 'smooth'
+        });
+    });
+
+    btnLeft.addEventListener('click', () => {
+        const cardWidth = carrusel.querySelector('.card').offsetWidth;
+        carrusel.scrollBy({
+            left: -(cardWidth + 15),
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
+
+
+
  <script src="style.js"></script>
+ <script src="../src/CRUD/autos.js"></script>
 </body>
 </html>

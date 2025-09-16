@@ -1,15 +1,29 @@
 <?php
 // Conexión a la base de datos
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "thames";
+class Database {
 
-$conn = new mysqli($host, $user, $pass, $db);
+    private $hostname = "localhost";
+    private $database = "thames";
+    private $username = "root";
+    private $password = "";
+    private $charset = "utf8";
 
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+    function conectar(){
+        try {
+            $conexion = "mysql:host=" . $this->hostname . ";dbname=" . $this->database . ";charset=" . $this->charset;
+
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_EMULATE_PREPARES => false
+            ];
+
+            $pdo = new PDO($conexion, $this->username, $this->password, $options);
+
+            return $pdo;
+        } catch(PDOException $error){
+            echo 'Error conexión: ' . $error->getMessage();     
+            exit;   
+        }
+    }
 }
-
 ?>
