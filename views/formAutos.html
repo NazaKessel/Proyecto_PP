@@ -1,97 +1,182 @@
-<!-- aca se hace el formulario para subir los autos a la db -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../public/formAutos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Auto</title>
+
+  <!-- AdminLTE -->
+  <link rel="stylesheet" href="../adminlte/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../adminlte/dist/css/adminlte.min.css">
 </head>
 
-<body>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
 
-    <div class="titulo">
-        <button type="button" class="btn-volver">←</button>
-        <h1>Thames Car</h1>
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="indexAdmin.html" class="nav-link"><i class="fas fa-arrow-left"></i> Volver a Inicio</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="index.php" class="brand-link">
+      <span class="brand-text font-weight-light">Thames Car</span>
+    </a>
+    <div class="sidebar">
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column">
+          <li class="nav-item">
+            <a href="autos.php" class="nav-link active">
+              <i class="fas fa-car nav-icon"></i>
+              <p>Autos</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="promociones.php" class="nav-link">
+              <i class="fas fa-tags nav-icon"></i>
+              <p>Promociones</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="pedidos.php" class="nav-link">
+              <i class="fas fa-shopping-cart nav-icon"></i>
+              <p>Pedidos</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="usuarios.php" class="nav-link">
+              <i class="fas fa-users nav-icon"></i>
+              <p>Usuarios</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
+  </aside>
 
-    <div class="formulario_autos">
-        <h2>Aqui se ingresan los datos del vehiculo a registar en la empresa</h2>
-        
-        <form action="../src/DB/formAutos.php" method="post" enctype="multipart/form-data">
-            <label for="marca">Marca</label><br>
-            <input list="marcas" id="marca" name="marca" required>
-            <datalist id="marcas">
-                <option value="Fiat">
-                <option value="Renault">
-                <option value="Peugeot">
-                <option value="Citroën">
-                <option value="Chevrolet">
-                <option value="Ford">
-                <option value="Volkswagen">
-                <option value="Toyota">
-                <option value="Honda">
-                <option value="Nissan">
-                <option value="Kia">
-                <option value="Hyundai">
-                <option value="Mitsubishi">
-                <option value="Suzuki">
-                <option value="Chery">
-                <option value="BMW">
-                <option value="Mercedes-Benz">
-                <option value="Audi">
-                <option value="Jeep">
-                <option value="Dodge">
-            </datalist><br><br>
+  <!-- Content Wrapper -->
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>Registrar Auto</h1>
+    </section>
 
-            <label for="modelo">Modelo</label><br>
-            <input type="text" id="modelo" name="modelo" required><br><br>
+    
 
-            <label for="anio">Año</label><br>
-            <select id="anio" name="anio" required></select><br><br>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Datos del Vehículo</h3>
+          </div>
+          <form action="../src/DB/formAutos.php" method="post" enctype="multipart/form-data">
+            <div class="card-body">
 
-            <label for="color">Color</label><br>
-            <input list="colores" id="color" name="color" required>
-            <datalist id="colores">
-                <option value="Negro">
-                <option value="Blanco">
-                <option value="Gris">
-                <option value="Plata">
-                <option value="Rojo">
-                <option value="Azul">
-                <option value="Verde">
-                <option value="Amarillo">
-                <option value="Naranja">
-                <option value="Marrón">
-            </datalist><br><br>
+              <div class="form-group">
+                <label for="marca">Marca</label>
+                <input list="marcas" id="marca" name="marca" class="form-control" required>
+                <datalist id="marcas">
+                  <option value="Fiat">
+                  <option value="Renault">
+                  <option value="Peugeot">
+                  <option value="Citroën">
+                  <option value="Chevrolet">
+                  <option value="Ford">
+                  <option value="Volkswagen">
+                  <option value="Toyota">
+                  <option value="Honda">
+                  <option value="Nissan">
+                  <option value="Kia">
+                  <option value="Hyundai">
+                  <option value="Mitsubishi">
+                  <option value="Suzuki">
+                  <option value="Chery">
+                  <option value="BMW">
+                  <option value="Mercedes-Benz">
+                  <option value="Audi">
+                  <option value="Jeep">
+                  <option value="Dodge">
+                </datalist>
+              </div>
 
-            <label for="patente">Patente</label><br>
-            <input type="text" id="patente" name="patente" placeholder="Ej: ABC 123 o AB 123 CD" required><br><br>
+              <div class="form-group">
+                <label for="modelo">Modelo</label>
+                <input type="text" id="modelo" name="modelo" class="form-control" required>
+              </div>
 
-            <label for="precio">Precio</label><br>
-            <input type="text" id="precio" name="precio" placeholder="Es el precio de alquiler semanal" required><br><br>
+              <div class="form-group">
+                <label for="anio">Año</label>
+                <select id="anio" name="anio" class="form-control" required></select>
+              </div>
 
-            <label for="foto">Imagen</label><br>
-            <input type="file" id="foto" name="foto" accept="image/*" required><br><br>
+              <div class="form-group">
+                <label for="color">Color</label>
+                <input list="colores" id="color" name="color" class="form-control" required>
+                <datalist id="colores">
+                  <option value="Negro">
+                  <option value="Blanco">
+                  <option value="Gris">
+                  <option value="Plata">
+                  <option value="Rojo">
+                  <option value="Azul">
+                  <option value="Verde">
+                  <option value="Amarillo">
+                  <option value="Naranja">
+                  <option value="Marrón">
+                </datalist>
+              </div>
 
-            <button class="boton" type="button">Volver Atrás</button>
-            <button class="boton" type="submit">Registrar Auto</button>
-        </form>
-    </div>
-</body>
+              <div class="form-group">
+                <label for="patente">Patente</label>
+                <input type="text" id="patente" name="patente" class="form-control" placeholder="Ej: ABC 123 o AB 123 CD" required>
+              </div>
+
+              <div class="form-group">
+                <label for="precio">Precio (alquiler semanal)</label>
+                <input type="text" id="precio" name="precio" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="foto">Imagen</label>
+                <input type="file" id="foto" name="foto" class="form-control" accept="image/*" required>
+              </div>
+
+            </div>
+
+            <div class="card-footer">
+              <a href="index.php" class="btn btn-secondary">Volver</a>
+              <button type="submit" class="btn btn-primary">Registrar Auto</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="../adminlte/plugins/jquery/jquery.min.js"></script>
+<script src="../adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../adminlte/dist/js/adminlte.min.js"></script>
 
 <script>
-    // Generar automáticamente los años desde 1980 hasta el actual
-    const selectAnio = document.getElementById("anio");
-    const anioActual = new Date().getFullYear();
+  // Generar automáticamente los años desde 1950 hasta el actual
+  const selectAnio = document.getElementById("anio");
+  const anioActual = new Date().getFullYear();
 
-    for (let i = anioActual; i >= 1950; i--) {
-        let option = document.createElement("option");
-        option.value = i;
-        option.textContent = i;
-        selectAnio.appendChild(option);
-    }
+  for (let i = anioActual; i >= 1950; i--) {
+    let option = document.createElement("option");
+    option.value = i;
+    option.textContent = i;
+    selectAnio.appendChild(option);
+  }
 </script>
 
+</body>
 </html>

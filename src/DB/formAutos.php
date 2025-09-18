@@ -1,6 +1,8 @@
 <?php
 // incluir la conexión
 include("conexion.php");
+$db = new Database();
+$conn = $db->conectar();
 
 // Si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -15,35 +17,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Manejo de la imagen
     $foto = $_FILES['foto']['name'];
     $ruta_temporal = $_FILES['foto']['tmp_name'];
-    $carpeta_destino = "uploads/"; // Carpeta donde se guardarán las imágenes
+    $carpeta_destino = "uploads/"; 
     if (!is_dir($carpeta_destino)) {
         mkdir($carpeta_destino, 0777, true);
     }
     $ruta_final = $carpeta_destino . basename($foto);
 
     if (move_uploaded_file($ruta_temporal, $ruta_final)) {
-        // Insertar en la base de datos
-        $sql = "INSERT INTO autos (marca, modelo, anio, color, patente, disponible, precio, foto) 
-                VALUES (?, ?, ?, ?, ?, 1, ?, ?)";
+        try {
+            // Insertar en la base de datos con PDO
+            $sql = "INSERT INTO autos (marca, modelo, anio, color, patente, disponible, precio, foto) 
+                    VALUES (:marca, :modelo, :anio, :color, :patente, 1, :precio, :foto)";
+            $stmt = $conn->prepare($sql);
 
-        $stmt = $conn->prepare($sql);
-        if ($stmt === false) {
-            die("❌ Error en prepare: " . $conn->error);
+            $stmt->bindParam(":marca", $marca);
+            $stmt->bindParam(":modelo", $modelo);
+            $stmt->bindParam(":anio", $anio, PDO::PARAM_INT);
+            $stmt->bindParam(":color", $color);
+            $stmt->bindParam(":patente", $patente);
+            $stmt->bindParam(":precio", $precio);
+            $stmt->bindParam(":foto", $ruta_final);
+
+            if ($stmt->execute()) {
+                echo "<p style='color:green;'>🚗 Auto registrado con éxito</p>";
+            } else {
+                echo "<p style='color:red;'>❌ Error al registrar</p>";
+            }
+
+        } catch (PDOException $e) {
+            echo "<p style='color:red;'>❌ Error: " . $e->getMessage() . "</p>";
         }
-
-        $stmt->bind_param("ssissds", $marca, $modelo, $anio, $color, $patente, $precio, $ruta_final);
-
-        if ($stmt->execute()) {
-            echo "<p style='color:green;'>🚗 Auto registrado con éxito</p>";
-        } else {
-            echo "<p style='color:red;'>❌ Error al registrar: " . $stmt->error . "</p>";
-        }
-
-        $stmt->close();
     } else {
         echo "<p style='color:red;'>❌ Error al subir la imagen.</p>";
     }
 }
-
-$conn->close();
 ?>
