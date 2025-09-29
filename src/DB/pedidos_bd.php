@@ -1,6 +1,6 @@
 <?php
-// incluir la conexión
-include("conexion.php");
+include("conexion.php");   // incluye la clase Database
+
 $db = new Database();
 $conn = $db->conectar();
 
