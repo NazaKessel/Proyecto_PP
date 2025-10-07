@@ -8,3 +8,59 @@
  --tarjetas: #f9f9f9;
  --naranja: #eca758;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+body {
+  line-height: 1.5;
+   background: var(--fondo);
+}
+/* Header*/
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background: #291d0e75;
+}
+header nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+}
+header nav a:hover{
+    color: var(--azul);
+}
+.logo{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+  background: var(--azul);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+.footer-grid {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+}
+.footer-grid a{
+    color: white;
+    text-decoration: none;
+}
+.footer-grid a:hover{
+    color: var(--naranja);
+}

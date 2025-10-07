@@ -26,7 +26,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     <header>
       <div class="logo">Thames Cars </div>
       <nav>
-        <a href="#">Menu</a>
+        <a href="productos.html">Productos</a>
         <a href="#servicios">Servicios</a>
         <a href="#contactanos">Contactanos</a>
       </nav>
