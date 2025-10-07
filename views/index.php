@@ -35,6 +35,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       <h1>Movilidad a tu alcance!</h1>
       <p>Tu próximo viaje empieza aquí: vehículos confiables y listos para vos.</p>
       <button onclick="location.href='registrarse.html'" class="btn">Registrarse</button>
+      <button onclick="location.href='inicioSesion.html'" class="btn">Iniciar Sesion</button>
     </div>
   </section>
 
@@ -88,7 +89,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     <img src="../public/img/ford/FordAtras.jpg" alt="Ford Atrás" id="img2">
   </div>
   <button class="next">&#10095;</button>
-</div>
+</div> 
 
       <div class="auto-text">
         <h2>Ford Focus <span> 50%off</span></h2>
@@ -97,32 +98,32 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       </div>
     </section>
 
-    <!-- Carrusel -->
-    <section class="carrusel">
-      <?php foreach($resultado as $row) { ?>
-        
-       <div class="card">
-        <!-- <h3 class="card-title">Llevate tu favorito</h3> -->
-        <?php 
-        $id = $row['id'];
-        $imagen = "../public/img/productos/$id/auto.jpg";
-        
-        if (!file_exists($imagen)){
-          $imagen = "../public/img/no-photo.jpg";
-        }
-        ?>
-        <img src=" <?php echo $imagen; ?>">
-        <p class="card-description"> <?php echo $row['marca']. " ". $row['modelo']; ?></p>
-        <p class="card-price">$ <?php echo $row['precio'];?></p>
-        <button> ver mas</button>
+    <!-- Productos -->
+     <section class="carrusel">
+    <button class="carrusel-btn prev">&#10094;</button>
+
+    <div class="carrusel-contenedor">
+        <?php foreach($resultado as $row) { ?>
+        <div class="card">
+            <?php 
+            $id = $row['id'];
+            $imagen = "../public/img/productos/$id/auto.jpg";
+            
+            if (!file_exists($imagen)){
+              $imagen = "../public/img/no-photo.jpg";
+            }
+            ?>
+            <img src="<?php echo $imagen; ?>">
+            <p class="card-description"><?php echo $row['marca']. " ". $row['modelo']; ?></p>
+            <p class="card-price">$ <?php echo $row['precio'];?></p>
+            <button>ver mas</button>
+        </div>
+        <?php } ?>
     </div>
-    <?php } ?>
 
-    </section>
+    <button class="carrusel-btn next">&#10095;</button>
+</section>
 
-
-
-     </div>
 
     <!-- Preferencias -->
     <section class="preferencias">
@@ -161,34 +162,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   </footer>
 
 
-
-  <script>
- document.addEventListener('DOMContentLoaded', function() {
-    const carrusel = document.getElementById('carrusel');
-    const btnLeft = document.getElementById('btn-left');
-    const btnRight = document.getElementById('btn-right');
-
-    btnRight.addEventListener('click', () => {
-        const cardWidth = carrusel.querySelector('.card').offsetWidth;
-        carrusel.scrollBy({
-            left: cardWidth + 15, // +15 por el gap entre tarjetas
-            behavior: 'smooth'
-        });
-    });
-
-    btnLeft.addEventListener('click', () => {
-        const cardWidth = carrusel.querySelector('.card').offsetWidth;
-        carrusel.scrollBy({
-            left: -(cardWidth + 15),
-            behavior: 'smooth'
-        });
-    });
-});
-</script>
-
-
-
- <script src="style.js"></script>
+<script src="carrusel.js"></script>
  <script src="../src/CRUD/autos.js"></script>
 </body>
 </html>
