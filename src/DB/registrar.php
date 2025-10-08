@@ -1,6 +1,9 @@
 <?php
-// incluir la conexión
-include("conexion.php");
+require_once("conexion.php");
+
+// Crear conexión
+$db   = new Database();
+$conn = $db->conectar();
 
 // Obtener datos del formulario
 $nombre    = $_POST['nombre'] ?? '';
@@ -11,7 +14,6 @@ $direccion = $_POST['direccion'] ?? '';
 $password  = $_POST['password'] ?? '';
 $confirmar = $_POST['confirmar'] ?? '';
 
-// Validar contraseñas en backend
 if ($password !== $confirmar) {
     die("Las contraseñas no coinciden.");
 }
@@ -20,12 +22,10 @@ if ($password !== $confirmar) {
 $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
 $stmt->bind_param("s", $email);
 $stmt->execute();
-$stmt->store_result();
 
 if ($stmt->num_rows > 0) {
     die("El correo electrónico ya está registrado.");
 }
-$stmt->close();
 
 // Hashear contraseña
 $password_hash = password_hash($password, PASSWORD_BCRYPT);
@@ -35,13 +35,9 @@ $stmt = $conn->prepare("INSERT INTO usuarios (nombre, apellido, email, ciudad, d
 $stmt->bind_param("ssssss", $nombre, $apellido, $email, $ciudad, $direccion, $password_hash);
 
 if ($stmt->execute()) {
-    echo "Registro exitoso. ¡Bienvenido, $nombre!";
-    // Redirigir a login o página principal si quieres:
-    // header("Location: ../login.php");
+    // Redirigir directamente al index
+    header("Location: ../../views/index.php");
+    exit();
 } else {
     echo "Error: " . $stmt->error;
 }
-
-$stmt->close();
-$conn->close();
-?>

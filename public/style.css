@@ -16,7 +16,7 @@
 }
 body {
   line-height: 1.5;
-   background: var(--fondo);
+  background: var(--fondo);
 }
 /* Header*/
 header {

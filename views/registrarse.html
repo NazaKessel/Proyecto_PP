@@ -4,62 +4,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registrarse</title>
+  <title>Registrarse | Thames Car</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../adminlte/plugins/fontawesome-free/css/all.min.css">
+
+  <!-- AdminLTE -->
+  <link rel="stylesheet" href="../adminlte/dist/css/adminlte.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Tu estilo personalizado -->
   <link rel="stylesheet" href="../public/registro.css">
 </head>
 
-<body>
+<body class="hold-transition register-page">
 
-  <div class="titulo">
-    <button type="button" class="btn-volver" onclick="location.href='index.html'">←</button>
-    <h1>Thames Car</h1>
+  <div class="register-box">
+    <!-- Logo y título -->
+    <div class="brand-logo">
+      <button type="button" class="btn-volver" onclick="location.href='index.php'">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      Thames Car
+    </div>
+
+    <!-- Card de registro -->
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <h3 class="mb-0">Crea tu cuenta</h3>
+        <p class="text-muted">Encontrá tu vehículo ideal</p>
+      </div>
+      <div class="card-body">
+        <form action="../src/DB/registrar.php" method="post" onsubmit="return validarContrasenas()">
+
+          <!-- Nombre -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" name="nombre" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fas fa-user"></i></div>
+            </div>
+          </div>
+
+          <!-- Apellido -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Apellido" name="apellido" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fas fa-user-tag"></i></div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Correo electrónico" name="email" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+            </div>
+          </div>
+
+          <!-- Ciudad -->
+          <div class="input-group mb-3">
+            <select class="form-control" name="ciudad" required>
+              <option value="">Seleccionar ciudad</option>
+              <option value="San Nicolás de los Arroyos">San Nicolás de los Arroyos</option>
+            </select>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fas fa-city"></i></div>
+            </div>
+          </div>
+
+          <!-- Dirección -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Dirección" name="direccion" required>
+            <div class="input-group-append">
+              <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+            </div>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password" required>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password')">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Confirmar contraseña -->
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Confirmar contraseña" id="confirmar" name="confirmar" required>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('confirmar')">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Botón -->
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      &copy; 2025 Thames Car. Todos los derechos reservados.
+    </footer>
   </div>
 
-  <h2>Crea tu cuenta y encontra te vehiculo ideal</h2>
+  <!-- AdminLTE Scripts -->
+  <script src="../adminlte/plugins/jquery/jquery.min.js"></script>
+  <script src="../adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../adminlte/dist/js/adminlte.min.js"></script>
 
-  <div class="registro">
-
-<form action="../src/DB/registrar.php" method="post">
-
-      <label for="nombre">Nombre</label><br>
-      <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre"><br><br>
-
-      <label for="apellido">Apellido</label><br>
-      <input type="text" id="apellido" name="apellido" required placeholder="Ingresa tu apellido"><br><br>
-
-      <label for="email">Correo electrónico</label><br>
-      <input type="email" id="email" name="email" required placeholder="Ingresar correo electrónico"><br><br>
-
-      <label for="ciudad">Ciudad</label><br>
-      <select id="ciudad" name="ciudad" required>
-        <option value="San Nicolás de los Arroyos">San Nicolás de los Arroyos</option>
-      </select><br><br>
-
-      <label for="direccion">Dirección</label><br>
-      <input type="text" id="direccion" name="direccion" required placeholder="Ingresar direccion"><br><br>
-
-      <label for="password">Contraseña</label><br>
-      <input type="password" id="password" name="password" required placeholder="Contraseña">
-      <button type="button" onclick="togglePassword('password')">👁️</button><br><br>
-
-      <label for="confirmar">Confirmar contraseña</label><br>
-      <input type="password" id="confirmar" name="confirmar" required placeholder="Contraseña">
-      <button type="button" onclick="togglePassword('confirmar')">👁️</button><br><br>
-
-      <input class="boton" type="submit" value="Registrarse">
-
-    </form>
-  </div>
-
-  <footer class="pie-pagina">
-    <p>&copy; 2025 Concesionaria de Autos. Todos los derechos reservados.</p>
-  </footer>
-
-
-
-  <!-- Script de auntentificacion de contrasela y boton para ver contraseña -->
-
-
+  <!-- Script de validación -->
   <script>
     function togglePassword(id) {
       const input = document.getElementById(id);
@@ -72,12 +136,11 @@
 
       if (pass1 !== pass2) {
         alert('Las contraseñas no coinciden.');
-        return false; // Previene el envío del formulario
+        return false;
       }
       return true;
     }
   </script>
 
 </body>
-
 </html>
