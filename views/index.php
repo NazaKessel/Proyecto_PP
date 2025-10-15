@@ -35,7 +35,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
       <h1>Movilidad a tu alcance!</h1>
       <p>Tu próximo viaje empieza aquí: vehículos confiables y listos para vos.</p>
       <button onclick="location.href='registrarse.html'" class="btn">Registrarse</button>
-      <button onclick="location.href='login.html'" class="btn">Iniciar Sesion</button>
+      <button onclick="location.href='login.php'" class="btn">Iniciar Sesion</button>
     </div>
   </section>
 
