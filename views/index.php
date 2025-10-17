@@ -8,7 +8,7 @@ $sql = $con->prepare("SELECT id, marca, precio, modelo, foto FROM autos WHERE di
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,26 +18,70 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thames Cars</title>
   <link rel="stylesheet" href="../public/principal.css">
+    <link rel="stylesheet" href="../public/login.css">
 </head>
 <body>
 
   <!-- Banner principal -->
   <section class="banner">
     <header>
-      <div class="logo">Thames Cars </div>
+      <div class="logo">Thames Cars</div>
       <nav>
         <a href="productos.html">Productos</a>
         <a href="#servicios">Servicios</a>
         <a href="#contactanos">Contactanos</a>
       </nav>
+
+      <?php if (isset($_SESSION["usuario"])): ?>
+        <!-- Menú del usuario logueado -->
+        <nav class="login">
+          <button class="user-btn" id="userMenuBtn">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Usuario">
+            <span><?= htmlspecialchars($_SESSION["usuario"]) ?></span>
+            <span class="arrow">▼</span>
+          </button>
+
+          <div class="dropdown" id="userDropdown">
+            <p>Hola, <?= htmlspecialchars($_SESSION["usuario"]) ?></p>
+            <form action="logout.php" method="post">
+              <button type="submit" class="logout-btn">Cerrar sesión</button>
+            </form>
+          </div>
+        </nav>
+      <?php else: ?>
+        <!-- Botones si no está logueado -->
+        <div class="auth-buttons">
+          <button onclick="location.href='registrarse.html'" class="btn">Registrarse</button>
+          <button onclick="location.href='login.php'" class="btn">Iniciar Sesión</button>
+        </div>
+      <?php endif; ?>
     </header>
+
     <div class="banner-content">
-      <h1>Movilidad a tu alcance!</h1>
+      <h1>¡Movilidad a tu alcance!</h1>
       <p>Tu próximo viaje empieza aquí: vehículos confiables y listos para vos.</p>
-      <button onclick="location.href='registrarse.html'" class="btn">Registrarse</button>
-      <button onclick="location.href='login.php'" class="btn">Iniciar Sesion</button>
     </div>
   </section>
+
+  <script>
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const dropdown = document.getElementById('userDropdown');
+    const arrow = document.querySelector('.arrow');
+
+    if (userMenuBtn) {
+      userMenuBtn.addEventListener('click', () => {
+        dropdown.classList.toggle('show');
+        arrow.classList.toggle('open');
+      });
+
+      window.addEventListener('click', (e) => {
+        if (!userMenuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.classList.remove('show');
+          arrow.classList.remove('open');
+        }
+      });
+    }
+  </script>
 
   <main class="container">
 
