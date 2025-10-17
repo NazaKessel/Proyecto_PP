@@ -25,59 +25,63 @@ session_start();
   <!-- Banner principal -->
   <section class="banner">
     <header>
-      <div class="logo">Thames Cars </div>
+      <div class="logo">Thames Cars</div>
       <nav>
         <a href="productos.html">Productos</a>
         <a href="#servicios">Servicios</a>
         <a href="#contactanos">Contactanos</a>
       </nav>
 
-       <nav class="login">
-    <button class="user-btn" id="userMenuBtn">
-      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Usuario">
-      <span class="arrow">▼</span>
-    </button>
+      <?php if (isset($_SESSION["usuario"])): ?>
+        <!-- Menú del usuario logueado -->
+        <nav class="login">
+          <button class="user-btn" id="userMenuBtn">
+            <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Usuario">
+            <span><?= htmlspecialchars($_SESSION["usuario"]) ?></span>
+            <span class="arrow">▼</span>
+          </button>
 
-    <div class="dropdown" id="userDropdown">
-      <p>Hola, Nazareth</p>
-      <button class="logout-btn" onclick="cerrarSesion()">Cerrar sesión</button>
+          <div class="dropdown" id="userDropdown">
+            <p>Hola, <?= htmlspecialchars($_SESSION["usuario"]) ?></p>
+            <form action="logout.php" method="post">
+              <button type="submit" class="logout-btn">Cerrar sesión</button>
+            </form>
+          </div>
+        </nav>
+      <?php else: ?>
+        <!-- Botones si no está logueado -->
+        <div class="auth-buttons">
+          <button onclick="location.href='registrarse.html'" class="btn">Registrarse</button>
+          <button onclick="location.href='login.php'" class="btn">Iniciar Sesión</button>
+        </div>
+      <?php endif; ?>
+    </header>
+
+    <div class="banner-content">
+      <h1>¡Movilidad a tu alcance!</h1>
+      <p>Tu próximo viaje empieza aquí: vehículos confiables y listos para vos.</p>
     </div>
-  </nav>
+  </section>
 
-  </nav>
   <script>
     const userMenuBtn = document.getElementById('userMenuBtn');
     const dropdown = document.getElementById('userDropdown');
     const arrow = document.querySelector('.arrow');
 
-    userMenuBtn.addEventListener('click', () => {
-      dropdown.classList.toggle('show');
-      arrow.classList.toggle('open');
-    });
+    if (userMenuBtn) {
+      userMenuBtn.addEventListener('click', () => {
+        dropdown.classList.toggle('show');
+        arrow.classList.toggle('open');
+      });
 
-    // Cierra el menú si se hace clic fuera
-    window.addEventListener('click', (e) => {
-      if (!userMenuBtn.contains(e.target) && !dropdown.contains(e.target)) {
-        dropdown.classList.remove('show');
-        arrow.classList.remove('open');
-      }
-    });
-
-    function cerrarSesion() {
-      alert('Sesión cerrada');
-      // Acá podés agregar tu lógica de PHP o redirección
+      window.addEventListener('click', (e) => {
+        if (!userMenuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.classList.remove('show');
+          arrow.classList.remove('open');
+        }
+      });
     }
   </script>
-
-
-    </header>
-    <div class="banner-content">
-      <h1>Movilidad a tu alcance!</h1>
-      <p>Tu próximo viaje empieza aquí: vehículos confiables y listos para vos.</p>
-      <button onclick="location.href='registrarse.html'" class="btn">Registrarse</button>
-      <button onclick="location.href='login.php'" class="btn">Iniciar Sesion</button>
-    </div>
-  </section>
 
   <main class="container">
 
