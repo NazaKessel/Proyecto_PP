@@ -1,0 +1,53 @@
+/* ==== Estilos personalizados para el listado de autos ==== */
+
+body {
+  background-color: #f4f6f9;
+}
+
+h2 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.auto-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+  background-color: #fff;
+}
+
+.auto-card:hover {
+  transform: scale(1.03);
+}
+
+.auto-img {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.card-body {
+  background-color: #fff;
+  padding: 15px;
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.precio {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #222;
+}
+
+form select {
+  min-width: 200px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+}

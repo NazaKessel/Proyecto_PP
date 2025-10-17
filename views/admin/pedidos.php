@@ -5,16 +5,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Pedidos</title>
-  <!-- CSS AdminLTE -->
   <link rel="stylesheet" href="../../adminlte/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="../../adminlte/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-<!-- Navbar -->
+  <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Botón de colapso del menú lateral -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
@@ -24,56 +22,45 @@
       </li>
     </ul>
   </nav>
-  <!-- /.navbar -->
 
   <!-- Sidebar -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Logo -->
     <a href="indexAdmin.php" class="brand-link">
       <i class="fas fa-car-side brand-image"></i>
       <span class="brand-text font-weight-light">Panel Admin</span>
     </a>
 
-    <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" role="menu" data-accordion="false">
-
+        <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false">
           <li class="nav-item">
             <a href="formAutos.php" class="nav-link">
               <i class="fas fa-car nav-icon"></i>
-              <p>Añadir de Autos</p>
+              <p>Añadir Autos</p>
             </a>
           </li>
-
           <li class="nav-item">
             <a href="promociones.php" class="nav-link">
               <i class="fas fa-percent nav-icon"></i>
               <p>Promociones</p>
             </a>
           </li>
-
           <li class="nav-item">
-            <a href="pedidos.php" class="nav-link">
+            <a href="pedidos.php" class="nav-link active">
               <i class="fas fa-shopping-cart nav-icon"></i>
               <p>Pedidos</p>
             </a>
           </li>
-
           <li class="nav-item">
             <a href="usuarios.php" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>Usuarios</p>
             </a>
           </li> 
-
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
-  </aside> 
+  </aside>
 
   <!-- Contenido principal -->
   <div class="content-wrapper p-4">
@@ -96,17 +83,16 @@
                   <th>Precio Total</th>
                   <th>Estado</th>
                   <th>Creado</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 <?php if (empty($pedidos)): ?>
                   <tr>
-                    <td colspan="10" class="text-center">No hay pedidos cargados</td>
+                    <td colspan="11" class="text-center">No hay pedidos cargados</td>
                   </tr>
                 <?php else: ?>
-                  <?php 
-                    $hoy = date('Y-m-d'); // Fecha actual
-                  ?>
+                  <?php $hoy = date('Y-m-d'); ?>
                   <?php foreach ($pedidos as $pedido): ?>
                     <tr>
                       <td><?= $pedido['id'] ?></td>
@@ -120,13 +106,20 @@
                       <td>
                         <?php
                           if ($pedido['fecha_fin'] <= $hoy) {
-                              echo '<span class="badge badge-success">Finalizado</span>';
+                            echo '<span class="badge badge-success">Finalizado</span>';
                           } else {
-                              echo '<span class="badge badge-warning">En Proceso</span>';
+                            echo '<span class="badge badge-warning">En Proceso</span>';
                           }
                         ?>
                       </td>
                       <td><?= $pedido['creado_en'] ?></td>
+                      <td class="text-center">
+                        <a href="../../src/DB/eliminarPedido.php?id=<?= $pedido['id'] ?>"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('¿Seguro que deseas eliminar este pedido? Esto volverá a poner el auto como disponible.');">
+                           <i class="fas fa-trash-alt"></i> Eliminar
+                        </a>
+                      </td>
                     </tr>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -141,9 +134,9 @@
 
 </div>
 
-<!-- JS AdminLTE -->
 <script src="../../adminlte/plugins/jquery/jquery.min.js"></script>
 <script src="../../adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../../adminlte/dist/js/adminlte.min.js"></script>
 </body>
 </html>
+

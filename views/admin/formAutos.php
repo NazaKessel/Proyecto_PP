@@ -94,9 +94,9 @@ $conn = $db->conectar();
           <div class="card-header">
             <h3 class="card-title">Datos del Vehículo</h3>
           </div>
-          <form action="../src/DB/formAutos.php" method="post" enctype="multipart/form-data">
+          <form action="../../src/DB/formAutosBD.php" method="post" enctype="multipart/form-data">
             <div class="card-body">
-              <!-- === Formulario de Registro (igual al tuyo) === -->
+              <!-- === Formulario de Registro === -->
               <div class="form-group">
                 <label for="marca">Marca</label>
                 <input list="marcas" id="marca" name="marca" class="form-control" required>
@@ -196,17 +196,20 @@ $conn = $db->conectar();
                 foreach ($autos as $row) { ?>
                   <div class="col-md-3">
                     <div class="card">
-                      <img src="../<?php echo $row['foto']; ?>" class="card-img-top" alt="Imagen del auto">
+                      <!-- ✅ Ruta corregida para mostrar imágenes -->
+                      <img src="../../src/DB/verImagen.php?img=<?php echo urlencode($row['foto']); ?>" 
+                      class="card-img-top" alt="Imagen del auto">
+
                       <div class="card-body text-center">
-                        <h5 class="card-title"><?php echo $row['marca'] . " " . $row['modelo']; ?></h5>
+                        <h5 class="card-title"><?php echo htmlspecialchars($row['marca'] . " " . $row['modelo']); ?></h5>
                         <p class="card-text">
-                          Año: <?php echo $row['anio']; ?><br>
-                          Color: <?php echo $row['color']; ?><br>
-                          Patente: <?php echo $row['patente']; ?><br>
+                          Año: <?php echo htmlspecialchars($row['anio']); ?><br>
+                          Color: <?php echo htmlspecialchars($row['color']); ?><br>
+                          Patente: <?php echo htmlspecialchars($row['patente']); ?><br>
                           Precio: $<?php echo number_format($row['precio'], 0, ',', '.'); ?>
                         </p>
-                        <form method="POST" action="eliminarAuto.php" class="form-eliminar-auto">
-                          <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                        <form method="POST" action="../../src/DB/eliminarAuto.php" class="form-eliminar-auto">
+                          <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id']); ?>">
                           <button type="submit" class="btn btn-danger btn-sm">
                             <i class="fas fa-trash"></i> Eliminar
                           </button>
