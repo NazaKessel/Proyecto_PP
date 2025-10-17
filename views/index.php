@@ -8,7 +8,7 @@ $sql = $con->prepare("SELECT id, marca, precio, modelo, foto FROM autos WHERE di
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +18,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thames Cars</title>
   <link rel="stylesheet" href="../public/principal.css">
+    <link rel="stylesheet" href="../public/login.css">
 </head>
 <body>
 
@@ -30,6 +31,45 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         <a href="#servicios">Servicios</a>
         <a href="#contactanos">Contactanos</a>
       </nav>
+
+       <nav class="login">
+    <button class="user-btn" id="userMenuBtn">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Usuario">
+      <span class="arrow">▼</span>
+    </button>
+
+    <div class="dropdown" id="userDropdown">
+      <p>Hola, Nazareth</p>
+      <button class="logout-btn" onclick="cerrarSesion()">Cerrar sesión</button>
+    </div>
+  </nav>
+
+  </nav>
+  <script>
+    const userMenuBtn = document.getElementById('userMenuBtn');
+    const dropdown = document.getElementById('userDropdown');
+    const arrow = document.querySelector('.arrow');
+
+    userMenuBtn.addEventListener('click', () => {
+      dropdown.classList.toggle('show');
+      arrow.classList.toggle('open');
+    });
+
+    // Cierra el menú si se hace clic fuera
+    window.addEventListener('click', (e) => {
+      if (!userMenuBtn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove('show');
+        arrow.classList.remove('open');
+      }
+    });
+
+    function cerrarSesion() {
+      alert('Sesión cerrada');
+      // Acá podés agregar tu lógica de PHP o redirección
+    }
+  </script>
+
+
     </header>
     <div class="banner-content">
       <h1>Movilidad a tu alcance!</h1>
