@@ -31,7 +31,7 @@ session_start();
     <header>
       <div class="logo">Thames Cars</div>
       <nav>
-        <a href="productos.html">Productos</a>
+        <a href="productos.php">Productos</a>
         <a href="#servicios">Servicios</a>
         <a href="#contactanos">Contactanos</a>
       </nav>

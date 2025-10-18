@@ -54,7 +54,7 @@ $autos = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <?php endforeach; ?>
             </select>
             <button class="btn btn-danger mx-2" type="submit">Buscar</button>
-            <a href="autos.php" class="btn btn-secondary">Mostrar todos</a>
+            <a href="Productos.php" class="btn btn-secondary">Mostrar todos</a>
           </div>
         </form>
 
@@ -69,7 +69,7 @@ $autos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h5 class="card-title text-danger">
                       <?= htmlspecialchars($auto['marca'] . ' ' . $auto['modelo']) ?>
                     </h5>
-                    <p class="card-text">$<?= number_format($auto['precio'], 2) ?> / día</p>
+                    <p class="card-text">$<?= number_format($auto['precio'], 2) ?> x día</p>
                     <a href="detalleProductos.php?id=<?= $auto['id'] ?>" class="btn btn-outline-danger">Ver más</a>
                   </div>
                 </div>
