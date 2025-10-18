@@ -11,8 +11,19 @@ $sql = $con->prepare("SELECT id, marca, precio, modelo, foto
                       LIMIT 8");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+$sql = $con->prepare("SELECT id, auto_id, descripcion, precio FROM promociones"); 
 
 session_start();
+// Promociones
+$sqlPromo = $con->prepare("
+    SELECT p.id AS promo_id, p.precio AS promo_precio, p.descripcion AS promo_desc,
+           a.id AS auto_id, a.marca, a.modelo, a.foto
+    FROM promociones p
+    INNER JOIN autos a ON p.auto_id = a.id
+    ORDER BY p.id DESC
+");
+$sqlPromo->execute();
+$promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -141,18 +152,19 @@ session_start();
     <button class="btn-promo prev">&#10094;</button>
 
     <div class="promo-contenedor">
-    <?php foreach($resultado as $row): ?>
+    <?php foreach($promociones as $promo): ?>
         <div class="promo-card">
             <div class="promo-img">
                 <?php 
-                $imagen = "../src/DB/verImagen.php?img=" . urlencode($row['foto']);
+                $imagen = "../src/DB/verImagen.php?img=" . urlencode($promo['foto']);
                 ?>
-                <img src="<?php echo $imagen; ?>" alt="Imagen de <?php echo htmlspecialchars($row['marca']); ?>">
+                <img src="<?php echo $imagen; ?>" alt="Imagen de <?php echo htmlspecialchars($promo['marca']); ?>">
             </div>
             <div class="promo-content">
-                <p class="promo-description"><?php echo htmlspecialchars($row['marca'] . " " . $row['modelo']); ?></p>
-                <p class="promo-price">$ <?php echo number_format($row['precio'], 2); ?></p>
-                <button onclick="location.href='detalleProductos.php?id=<?= $row['id'] ?>'">Ver más</button>
+              <p class="promo-text"><?php echo htmlspecialchars($promo['promo_desc']); ?></p>
+                <p class="promo-description"><?php echo htmlspecialchars($promo['marca'] . " " . $promo['modelo']); ?></p>
+                <p class="promo-price">$ <?php echo number_format($promo['promo_precio'], 2); ?></p>
+                <button onclick="location.href='detalleProductos.php?id=<?= $promo['auto_id'] ?>'">Ver más</button>
             </div>
         </div>
     <?php endforeach; ?>
