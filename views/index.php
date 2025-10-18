@@ -4,7 +4,11 @@ require '../src/DB/conexion.php';
 $db = new Database();
 $con = $db ->conectar();
 
-$sql = $con->prepare("SELECT id, marca, precio, modelo, foto FROM autos WHERE disponible = 1");
+$sql = $con->prepare("SELECT id, marca, precio, modelo, foto 
+                      FROM autos 
+                      WHERE disponible = 1 
+                      ORDER BY RAND() 
+                      LIMIT 8");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
@@ -151,26 +155,22 @@ session_start();
     </section>
 
     <!-- Productos -->
-     <section class="carrusel">
+   <section class="carrusel"> 
     <button class="carrusel-btn prev">&#10094;</button>
 
     <div class="carrusel-contenedor">
-        <?php foreach($resultado as $row) { ?>
+        <?php foreach($resultado as $row): ?>
         <div class="card">
             <?php 
-            $id = $row['id'];
-            $imagen = "../public/img/productos/$id/auto.jpg";
-            
-            if (!file_exists($imagen)){
-              $imagen = "../public/img/no-photo.jpg";
-            }
+            // En la columna 'foto' debería estar el nombre del archivo, ej: "auto1.jpg"
+            $imagen = "../src/DB/verImagen.php?img=" . urlencode($row['foto']);
             ?>
-            <img src="<?php echo $imagen; ?>">
-            <p class="card-description"><?php echo $row['marca']. " ". $row['modelo']; ?></p>
-            <p class="card-price">$ <?php echo $row['precio'];?></p>
-            <button>ver mas</button>
+            <img src="<?php echo $imagen; ?>" alt="Imagen de <?php echo $row['marca']; ?>">
+            <p class="card-description"><?php echo $row['marca'] . " " . $row['modelo']; ?></p>
+            <p class="card-price">$ <?php echo $row['precio']; ?></p>
+            <button>Ver más</button>
         </div>
-        <?php } ?>
+        <?php endforeach; ?>
     </div>
 
     <button class="carrusel-btn next">&#10095;</button>

@@ -8,4 +8,5 @@ if (file_exists($ruta)) {
     readfile($ruta);
 } else {
     http_response_code(404);
+    
 }
