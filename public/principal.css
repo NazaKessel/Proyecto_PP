@@ -112,65 +112,113 @@ height: 20vh;
   max-width: 400px;
 }
 
-/* Auto destacado */
-.auto {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  padding: 40px 0;
-  background: white;
-  border-radius: 25px;
-}
-.auto .carousel {
-  width: 40%;
-
-}
-.carousel {
-  position: relative;
-  width: 800px; /* ancho del carrusel */
-  max-width: 100%;
-  margin: 40px auto;
-  overflow: hidden;
+/* PROMOCIONES */
+/* PROMOCIONES */
+.promo {
+    position: relative;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 40px;
 }
 
-.carousel-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+.promo-contenedor {
+    display: flex;
+    overflow-x: hidden; /* Solo se ve una tarjeta a la vez */
+    scroll-behavior: smooth;
 }
 
-.carousel-track img {
-  width: 100%;
-  flex-shrink: 0;
-  object-fit: cover;
+.promo-card {
+    flex: 0 0 100%; /* Una tarjeta ocupa todo el carrusel */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    gap: 20px;
+    box-sizing: border-box;
 }
 
-/* Flechas */
-.carousel button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  font-size: 2rem;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 10;
-  background: none;
-  color: rgba(255, 255, 255, 0.288);
+.promo-img {
+    flex: 0 0 40%;
 }
 
-.carousel .prev {
-  left: 10px;
+.promo-img img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
 }
 
-.carousel .next {
-  right: 10px;
+.promo-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;        
 }
 
-.auto-text {
-  margin-left: auto; /* lleva el bloque a la derecha */
-  text-align: center; /* alinea texto contra el borde */
-  max-width: 400px;
-} 
+.promo-content .promo-description {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.promo-content .promo-price {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.promo-content button {
+    background-color: #3483fa;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.promo-content button:hover {
+    background-color: #2c6eb5;
+}
+
+/* BOTONES PROMO */
+.btn-promo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-promo:hover {
+    background-color: #f0f0f0;
+}
+
+.btn-promo.prev {
+    left: 0;
+}
+
+.btn-promo.next {
+    right: 0;
+}
 
 /* CARRUSEL */
   /* Estilos Generales del Carrusel */

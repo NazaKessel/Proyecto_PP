@@ -24,22 +24,4 @@ document.addEventListener('DOMContentLoaded', () => {
         carruselContenedor.scrollLeft += desplazamiento;
     });
 
-    // Opcional: Funcionalidad de auto-ocultar botones si ya no hay más scroll
-    // (Esto es más complejo y no se requiere inicialmente, pero mejora la UX)
-    /*
-    const verificarBotones = () => {
-        const { scrollLeft, scrollWidth, clientWidth } = carruselContenedor;
-        
-        // Botón 'Anterior' se oculta al inicio
-        prevBtn.style.display = scrollLeft > 0 ? 'flex' : 'none'; 
-        
-        // Botón 'Siguiente' se oculta al final. Un pequeño margen es útil.
-        const estaAlFinal = scrollLeft + clientWidth >= scrollWidth - 5;
-        nextBtn.style.display = estaAlFinal ? 'none' : 'flex';
-    };
-
-    carruselContenedor.addEventListener('scroll', verificarBotones);
-    window.addEventListener('resize', verificarBotones); // En caso de cambio de tamaño de ventana
-    verificarBotones(); // Ejecutar al cargar para establecer el estado inicial
-    */
 });

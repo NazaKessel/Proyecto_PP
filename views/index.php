@@ -136,23 +136,30 @@ session_start();
       <img src="../public/img/208Promo.png" alt="Servicio">
     </section>
 
-    <!-- Auto destacado -->
-     <section class="auto">
-  <div class="carousel">
-  <button class="prev">&#10094;</button>
-  <div class="carousel-track">
-    <img src="../public/img/ford/FordCostado.jpg" alt="Ford Costado" id="img1">
-    <img src="../public/img/ford/FordAtras.jpg" alt="Ford Atrás" id="img2">
-  </div>
-  <button class="next">&#10095;</button>
-</div> 
+    <!-- PROMOS -->
+     <section class="carrusel promo"> 
+    <button class="btn-promo prev">&#10094;</button>
 
-      <div class="auto-text">
-        <h2>Ford Focus <span> 50%off</span></h2>
-        <p>Comodidad y potencia en un solo vehículo. Ideal para tus viajes.</p>
-        <button class="btn">Ver más</button>
-      </div>
-    </section>
+    <div class="promo-contenedor">
+    <?php foreach($resultado as $row): ?>
+        <div class="promo-card">
+            <div class="promo-img">
+                <?php 
+                $imagen = "../src/DB/verImagen.php?img=" . urlencode($row['foto']);
+                ?>
+                <img src="<?php echo $imagen; ?>" alt="Imagen de <?php echo htmlspecialchars($row['marca']); ?>">
+            </div>
+            <div class="promo-content">
+                <p class="promo-description"><?php echo htmlspecialchars($row['marca'] . " " . $row['modelo']); ?></p>
+                <p class="promo-price">$ <?php echo number_format($row['precio'], 2); ?></p>
+                <button onclick="location.href='detalleProductos.php?id=<?= $row['id'] ?>'">Ver más</button>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    </div>
+
+    <button class="btn-promo next">&#10095;</button>
+</section>
 
     <!-- Productos -->
    <section class="carrusel"> 
@@ -162,7 +169,7 @@ session_start();
     <?php foreach($resultado as $row): ?>
         <div class="card">
             <?php 
-            // En la columna 'foto' debería estar el nombre del archivo, ej: "auto1.jpg"
+           
             $imagen = "../src/DB/verImagen.php?img=" . urlencode($row['foto']);
             ?>
             <img src="<?php echo $imagen; ?>" alt="Imagen de <?php echo htmlspecialchars($row['marca']); ?>">
@@ -217,6 +224,7 @@ session_start();
 
 
 <script src="carrusel.js"></script>
+<script src="carrusel-promos.js"></script>
  <script src="../src/CRUD/autos.js"></script>
 </body>
 </html>
