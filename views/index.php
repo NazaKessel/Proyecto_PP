@@ -46,6 +46,14 @@ session_start();
             <form action="logout.php" method="post">
               <button type="submit" class="logout-btn">Cerrar sesión</button>
             </form>
+           
+             <?php if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] === "admin"): ?>
+      <!-- Solo el admin ve este botón -->
+      <button type="button" class="admin-btn" onclick="location.href='./admin/indexAdmin.php'">Panel de Administracion</button>
+  <?php endif; ?>
+         
+             
+            ?>
           </div>
         </nav>
       <?php else: ?>
