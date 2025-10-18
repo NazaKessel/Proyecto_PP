@@ -1,7 +1,6 @@
 /* --- Contenedor principal --- */
 .container {
   width: 90%;
-  margin: 0 auto;
 }
 
 /* --- Título principal --- */
@@ -12,11 +11,8 @@
 /* --- Fila de autos --- */
 .row {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  width: 100%;           /* Ocupa casi todo el ancho de la página */
-  margin: 0 auto;
-  gap: 8px;             /* Espacio mínimo entre tarjetas */
+  width: 100%;                  
 }
 
 /* --- Tarjetas individuales --- */
@@ -26,7 +22,7 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;             /* Menos espacio interno */
+  padding: 10px;            
   display: flex;
   flex-direction: column;
   align-items: center;
