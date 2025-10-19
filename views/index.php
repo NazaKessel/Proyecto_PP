@@ -237,6 +237,11 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
 
 <script src="carrusel.js"></script>
 <script src="carrusel-promos.js"></script>
+<<<<<<< HEAD
 <script src="../src/CRUD/autos.js"></script>
+=======
+<script src="header.js"></script>
+ <script src="../src/CRUD/autos.js"></script>
+>>>>>>> 0e992733bc1d36bf1b51e0807668f25577b71af0
 </body>
 </html>

@@ -84,6 +84,7 @@
       .producto-contenedor {
         flex-direction: column;
         text-align: center;
+       
       }
 
       .detalles-producto {
@@ -99,4 +100,5 @@
         max-height: 300px;
         object-fit: cover;
       }
+
     }
