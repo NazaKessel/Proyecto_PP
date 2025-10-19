@@ -46,25 +46,33 @@ if (!$auto) {
             <?php if (isset($_SESSION["usuario"])): ?>
               <hr>
               <h5 class="text-danger">Reservar este auto</h5>
-              <form action="reservar.php" method="POST" onsubmit="return calcularPrecio()">
+              <form action="reservar.php" method="POST" onsubmit="return validarFormulario()">
                 <input type="hidden" name="auto_id" value="<?= $auto['id'] ?>">
+
                 <div class="mb-3">
                   <label>Fecha de retiro:</label>
                   <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
                 </div>
+
                 <div class="mb-3">
                   <label>Fecha de devolución:</label>
                   <input type="date" id="fecha_fin" name="fecha_fin" class="form-control" required>
                 </div>
+
                 <div class="mb-3">
                   <label>Total estimado:</label>
                   <input type="text" id="precio_total" name="precio_total" class="form-control" readonly>
                 </div>
+
+                <p id="total_texto" class="text-success font-weight-bold"></p>
+
                 <button type="submit" class="btn btn-danger btn-block">Confirmar Reserva</button>
+                <a class="btn btn-secondary btn-block" href="index.php">Volver atrás</a>
               </form>
             <?php else: ?>
               <div class="alert alert-warning mt-3">
                 Debes <a href="login.php">iniciar sesión</a> para reservar este auto.
+                <a href="index.php">Volver atrás</a>
               </div>
             <?php endif; ?>
           </div>
@@ -74,24 +82,59 @@ if (!$auto) {
   </div>
 </div>
 
+<!-- ================== SCRIPT ================== -->
 <script>
-function calcularPrecio() {
-  const inicio = new Date(document.getElementById('fecha_inicio').value);
-  const fin = new Date(document.getElementById('fecha_fin').value);
-  const precioDia = <?= $auto['precio']; ?>;
+const inicio = document.getElementById('fecha_inicio');
+const fin = document.getElementById('fecha_fin');
+const totalInput = document.getElementById('precio_total');
+const totalTexto = document.getElementById('total_texto');
+const precioDia = <?= $auto['precio']; ?>;
 
-  if (fin <= inicio) {
-    alert("La fecha de devolución debe ser posterior a la de retiro.");
+// 🔹 Calcula el total sin mostrar alertas
+function actualizarTotal() {
+  if (!inicio.value || !fin.value) {
+    totalInput.value = '';
+    totalTexto.textContent = '';
+    return;
+  }
+
+  const f1 = new Date(inicio.value);
+  const f2 = new Date(fin.value);
+
+  if (f2 <= f1) {
+    totalInput.value = '';
+    totalTexto.textContent = '';
+    return;
+  }
+
+  const diff = (f2 - f1) / (1000 * 60 * 60 * 24); // diferencia en días
+  const total = diff * precioDia;
+
+  totalInput.value = `$${total.toFixed(2)}`;
+  totalTexto.textContent = `💰 Total estimado: $${total.toFixed(2)} (${diff} días)`;
+}
+
+// 🔹 Muestra el error SOLO al presionar "Confirmar Reserva"
+function validarFormulario() {
+  const f1 = new Date(inicio.value);
+  const f2 = new Date(fin.value);
+
+  if (!inicio.value || !fin.value) {
+    alert('Debes seleccionar ambas fechas.');
     return false;
   }
 
-  const diffTime = Math.abs(fin - inicio);
-  const dias = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  const total = dias * precioDia;
+  if (f2 <= f1) {
+    alert('La fecha de devolución debe ser posterior a la de retiro.');
+    return false;
+  }
 
-  document.getElementById('precio_total').value = total.toFixed(2);
   return true;
 }
+
+// Recalcular total al cambiar fechas
+inicio.addEventListener('change', actualizarTotal);
+fin.addEventListener('change', actualizarTotal);
 </script>
 
 <script src="../adminlte/plugins/jquery/jquery.min.js"></script>

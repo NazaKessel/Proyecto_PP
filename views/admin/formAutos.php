@@ -14,6 +14,7 @@ $conn = $db->conectar();
   <!-- AdminLTE -->
   <link rel="stylesheet" href="../../adminlte/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="../../adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../../public/tamañoImg.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -157,7 +158,7 @@ $conn = $db->conectar();
               </div>
 
               <div class="form-group">
-                <label for="precio">Precio (alquiler semanal)</label>
+                <label for="precio">Precio (alquiler diario)</label>
                 <input type="text" id="precio" name="precio" class="form-control" required>
               </div>
 
@@ -197,7 +198,7 @@ $conn = $db->conectar();
                   <div class="col-md-3">
                     <div class="card">
                       <!-- ✅ Ruta corregida para mostrar imágenes -->
-                      <img src="../../src/DB/verImagen.php?img=<?php echo urlencode($row['foto']); ?>" 
+                      <img class="tamaño" src="../../src/DB/verImagen.php?img=<?php echo urlencode($row['foto']); ?>" 
                       class="card-img-top" alt="Imagen del auto">
 
                       <div class="card-body text-center">

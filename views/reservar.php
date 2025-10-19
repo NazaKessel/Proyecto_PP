@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   echo "<script>
     alert('✅ Pedido realizado con éxito.');
-    window.location.href='autos.php';
+    window.location.href='index.php';
   </script>";
 }
 ?>

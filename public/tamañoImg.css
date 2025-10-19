@@ -1,0 +1,32 @@
+.tamaño {
+  width: 100%;             /* La imagen ocupa todo el ancho de su contenedor */
+  height: 220px;           /* Alto fijo */
+  object-fit: cover;       /* Recorta para mantener proporción */
+  border-radius: 10px;     /* Bordes redondeados */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Sombra suave */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  margin: 0 auto;          /* Centrar si el contenedor tiene ancho menor */
+}
+
+/* Efecto al pasar el mouse */
+.tamaño:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.img-auto {
+  width: 100%;               /* Ocupa todo el ancho de la tarjeta */
+  height: 180px;             /* Alto fijo más compacto */
+  object-fit: contain;       /* Mantiene la proporción completa del auto */
+  background-color: #f8f8f8; /* Fondo neutro para imágenes con fondo blanco */
+  border-radius: 10px 10px 0 0; /* Bordes superiores redondeados */
+  padding: 10px;             /* Espacio interno para que no quede al borde */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover */
+.img-auto:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}

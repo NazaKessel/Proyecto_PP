@@ -17,7 +17,7 @@ session_start();
 // Promociones
 $sqlPromo = $con->prepare("
     SELECT p.id AS promo_id, p.precio AS promo_precio, p.descripcion AS promo_desc,
-           a.id AS auto_id, a.marca, a.modelo, a.foto
+    a.id AS auto_id, a.marca, a.modelo, a.foto
     FROM promociones p
     INNER JOIN autos a ON p.auto_id = a.id
     ORDER BY p.id DESC
@@ -33,7 +33,8 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thames Cars</title>
   <link rel="stylesheet" href="../public/principal.css">
-    <link rel="stylesheet" href="../public/login.css">
+  <link rel="stylesheet" href="../public/login.css">
+  <link rel="stylesheet" href="../public/tamañoImg.css">
 </head>
 <body>
 
@@ -61,8 +62,8 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
             <form action="logout.php" method="post">
               <button type="submit" class="logout-btn">Cerrar sesión</button>
             </form>
-           
-             <?php if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] === "admin"): ?>
+          
+            <?php if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] === "admin"): ?>
       <!-- Solo el admin ve este botón -->
       <button type="button" class="admin-btn" onclick="location.href='./admin/indexAdmin.php'">Panel de Administracion</button>
   <?php endif; ?>
@@ -148,7 +149,7 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
     </section>
 
     <!-- PROMOS -->
-     <section class="carrusel promo"> 
+    <section class="carrusel promo"> 
     <button class="btn-promo prev">&#10094;</button>
 
     <div class="promo-contenedor">
@@ -164,7 +165,7 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
               <p class="promo-text"><?php echo htmlspecialchars($promo['promo_desc']); ?></p>
                 <p class="promo-description"><?php echo htmlspecialchars($promo['marca'] . " " . $promo['modelo']); ?></p>
                 <p class="promo-price">$ <?php echo number_format($promo['promo_precio'], 2); ?></p>
-                <button onclick="location.href='detalleProductos.php?id=<?= $promo['auto_id'] ?>'">Ver más</button>
+                <button onclick="location.href='detallePromocion.php?id=<?= $promo['auto_id'] ?>'">Ver más</button>
             </div>
         </div>
     <?php endforeach; ?>
@@ -174,17 +175,16 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
 </section>
 
     <!-- Productos -->
-   <section class="carrusel"> 
+    <section class="carrusel"> 
     <button class="carrusel-btn prev">&#10094;</button>
 
     <div class="carrusel-contenedor">
     <?php foreach($resultado as $row): ?>
         <div class="card">
             <?php 
-           
             $imagen = "../src/DB/verImagen.php?img=" . urlencode($row['foto']);
             ?>
-            <img src="<?php echo $imagen; ?>" alt="Imagen de <?php echo htmlspecialchars($row['marca']); ?>">
+            <img class="img-auto" src="<?php echo $imagen; ?>" alt="Imagen de <?php echo htmlspecialchars($row['marca']); ?>">
             <p class="card-description"><?php echo htmlspecialchars($row['marca'] . " " . $row['modelo']); ?></p>
             <p class="card-price">$ <?php echo number_format($row['precio'], 2); ?></p>
             
@@ -237,6 +237,6 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
 
 <script src="carrusel.js"></script>
 <script src="carrusel-promos.js"></script>
- <script src="../src/CRUD/autos.js"></script>
+<script src="../src/CRUD/autos.js"></script>
 </body>
 </html>
