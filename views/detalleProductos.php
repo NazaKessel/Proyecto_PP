@@ -90,7 +90,7 @@ const totalInput = document.getElementById('precio_total');
 const totalTexto = document.getElementById('total_texto');
 const precioDia = <?= $auto['precio']; ?>;
 
-// 🔹 Calcula el total sin mostrar alertas
+// 🔹 Calcula el total sin símbolo "$" en el input
 function actualizarTotal() {
   if (!inicio.value || !fin.value) {
     totalInput.value = '';
@@ -110,11 +110,14 @@ function actualizarTotal() {
   const diff = (f2 - f1) / (1000 * 60 * 60 * 24); // diferencia en días
   const total = diff * precioDia;
 
-  totalInput.value = `$${total.toFixed(2)}`;
+  // ✅ Solo número en el input (sin $)
+  totalInput.value = total.toFixed(2);
+
+  // 💬 Mostrar al usuario con formato
   totalTexto.textContent = `💰 Total estimado: $${total.toFixed(2)} (${diff} días)`;
 }
 
-// 🔹 Muestra el error SOLO al presionar "Confirmar Reserva"
+// 🔹 Validar formulario antes de enviar
 function validarFormulario() {
   const f1 = new Date(inicio.value);
   const f2 = new Date(fin.value);
@@ -142,3 +145,4 @@ fin.addEventListener('change', actualizarTotal);
 <script src="../adminlte/dist/js/adminlte.min.js"></script>
 </body>
 </html>
+
