@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_update->bindParam(':auto_id', $auto_id);
             $stmt_update->execute();
 
-            echo "<script>alert('✅ Reserva realizada con éxito. Total: $$precio_total'); window.location.href='index.php';</script>";
+            echo "<script>alert('✅ Reserva realizada con éxito. Total: $$precio_total'); window.location.href='../index.php';</script>";
             exit;
         }
     }
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p id="total" style="font-weight:bold; margin-top:10px;"></p>
 
                 <button type="submit" class="btn-reservar">Reservar</button>
-                <a href="index.php">Volver atrás</a>
+                <a href="../index.php">Volver atrás</a>
             </form>
 
             <script>
@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </script>
         <?php else: ?>
             <p class="login-msg">🔒 Debes <a href="login.php">iniciar sesión</a> para reservar.</p>
-            <a href="index.php">Volver atrás</a>
+            <a href="../index.php">Volver atrás</a>
         <?php endif; ?>
     </div>
 </div>

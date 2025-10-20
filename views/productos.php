@@ -45,7 +45,7 @@ $autos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <!-- Filtro -->
         <form method="GET" class="mb-5 text-center">
           <div class="d-flex justify-content-center">
-            <a href="index.php" class="btn btn-secondary">Volver atrás</a>
+            <a href="../index.php" class="btn btn-secondary">Volver atrás</a>
             <select name="marca" class="form-control w-auto mx-2">
               <option value="">Todas las marcas</option>
               <?php foreach ($marcas as $marca): ?>

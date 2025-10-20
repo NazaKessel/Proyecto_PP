@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // 🔹 Verificar usuario y contraseña
     if ($user && password_verify($password, $user["password_hash"])) {
         $_SESSION["usuario"] = $user["nombre"];
-        header("Location: index.php"); // si no es admin, va al index normal
+        header("Location: ../index.php"); // si no es admin, va al index normal
         exit;
     } else {
         echo "<script>

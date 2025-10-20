@@ -1,6 +1,6 @@
 <?php
 
-require '../src/DB/conexion.php';
+require './src/DB/conexion.php';
 $db = new Database();
 $con = $db ->conectar();
 
@@ -32,9 +32,9 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thames Cars</title>
-  <link rel="stylesheet" href="../public/principal.css">
-  <link rel="stylesheet" href="../public/login.css">
-  <link rel="stylesheet" href="../public/tamañoImg.css">
+  <link rel="stylesheet" href="./public/principal.css">
+  <link rel="stylesheet" href="./public/login.css">
+  <link rel="stylesheet" href="./public/tamañoImg.css">
 </head>
 <body>
 
@@ -43,7 +43,7 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
     <header>
       <div class="logo">Thames Cars</div>
       <nav>
-        <a href="productos.php">Productos</a>
+        <a href="./views/productos.php">Productos</a>
         <a href="#servicios">Servicios</a>
         <a href="#contactanos">Contactanos</a>
       </nav>
@@ -59,13 +59,13 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
 
           <div class="dropdown" id="userDropdown">
             <p>Hola, <?= htmlspecialchars($_SESSION["usuario"]) ?></p>
-            <form action="logout.php" method="post">
+            <form action="./views/logout.php" method="post">
               <button type="submit" class="logout-btn">Cerrar sesión</button>
             </form>
           
             <?php if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] === "admin"): ?>
       <!-- Solo el admin ve este botón -->
-      <button type="button" class="admin-btn" onclick="location.href='./admin/indexAdmin.php'">Panel de Administracion</button>
+      <button type="button" class="admin-btn" onclick="location.href='./views/admin/indexAdmin.php'">Panel de Administracion</button>
   <?php endif; ?>
          
              
@@ -75,8 +75,8 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
       <?php else: ?>
         <!-- Botones si no está logueado -->
         <div class="auth-buttons">
-          <button onclick="location.href='registrarse.html'" class="btn">Registrarse</button>
-          <button onclick="location.href='login.php'" class="btn">Iniciar Sesión</button>
+          <button onclick="location.href='./views/registrarse.html'" class="btn">Registrarse</button>
+          <button onclick="location.href='./views/login.php'" class="btn">Iniciar Sesión</button>
         </div>
       <?php endif; ?>
     </header>
@@ -114,25 +114,25 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
     <div class="circles">
       <div class="circle-item">
         <div class="circle">
-            <img src="../public/img/marcas/toyota.png" alt="">
+            <img src="./public/img/marcas/toyota.png" alt="">
         </div>
         <p>Toyota</p>
       </div>
       <div class="circle-item">
         <div class="circle">
-            <img src="../public/img/marcas/renault.png" alt="">
+            <img src="./public/img/marcas/renault.png" alt="">
         </div>
         <p>Renault</p>
       </div>
       <div class="circle-item">
         <div class="circle">
-            <img src="../public/img/marcas/volkswagen.png" alt="">
+            <img src="./public/img/marcas/volkswagen.png" alt="">
         </div>
         <p>Volkswagen</p>
       </div>
       <div class="circle-item">
         <div class="circle">
-            <img src="../public/img/marcas/ford.png" alt="">
+            <img src="./public/img/marcas/ford.png" alt="">
         </div>
         <p>Ford</p>
       </div>
@@ -145,7 +145,7 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
         <p>Ofrecemos el mejor servicio de alquiler con beneficios únicos para vos, descubre mas:</p>
         <button class="btn">Promos</button>
       </div>
-      <img src="../public/img/208Promo.png" alt="Servicio">
+      <img src="./public/img/208Promo.png" alt="Servicio">
     </section>
 
     <!-- PROMOS -->
@@ -157,7 +157,7 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
         <div class="promo-card">
             <div class="promo-img">
                 <?php 
-                $imagen = "../src/DB/verImagen.php?img=" . urlencode($promo['foto']);
+                $imagen = "./src/DB/verImagen.php?img=" . urlencode($promo['foto']);
                 ?>
                 <img src="<?php echo $imagen; ?>" alt="Imagen de <?php echo htmlspecialchars($promo['marca']); ?>">
             </div>
@@ -165,7 +165,7 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
               <p class="promo-text"><?php echo htmlspecialchars($promo['promo_desc']); ?></p>
                 <p class="promo-description"><?php echo htmlspecialchars($promo['marca'] . " " . $promo['modelo']); ?></p>
                 <p class="promo-price">$ <?php echo number_format($promo['promo_precio'], 2); ?></p>
-                <button onclick="location.href='detallePromocion.php?id=<?= $promo['auto_id'] ?>'">Ver más</button>
+                <button onclick="location.href='./views/detallePromocion.php?id=<?= $promo['auto_id'] ?>'">Ver más</button>
             </div>
         </div>
     <?php endforeach; ?>
@@ -182,14 +182,14 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach($resultado as $row): ?>
         <div class="card">
             <?php 
-            $imagen = "../src/DB/verImagen.php?img=" . urlencode($row['foto']);
+            $imagen = "./src/DB/verImagen.php?img=" . urlencode($row['foto']);
             ?>
             <img class="img-auto" src="<?php echo $imagen; ?>" alt="Imagen de <?php echo htmlspecialchars($row['marca']); ?>">
             <p class="card-description"><?php echo htmlspecialchars($row['marca'] . " " . $row['modelo']); ?></p>
             <p class="card-price">$ <?php echo number_format($row['precio'], 2); ?></p>
             
             <!-- Botón adaptado -->
-            <button onclick="location.href='detalleProductos.php?id=<?= $row['id'] ?>'">Ver más</button>
+            <button onclick="location.href='./views/detalleProductos.php?id=<?= $row['id'] ?>'">Ver más</button>
         </div>
     <?php endforeach; ?>
 </div>
@@ -203,17 +203,17 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
       <h2 class="section-title">¿Qué prefieres?</h2>
       <div class="preferencias-grid">
         <div class="pref-card">
-          <img src="../public/img/iconAuto.png" alt="Auto">
+          <img src="./public/img/iconAuto.png" alt="Auto">
           <h3>Autos</h3>
           <p>Comodidad diaria</p>
         </div>
         <div class="pref-card">
-          <img src="../public/img/iconCamioneta.png" alt="Camioneta">
+          <img src="./public/img/iconCamioneta.png" alt="Camioneta">
           <h3>Camionetas</h3>
           <p>Potencia segura</p>
         </div>
         <div class="pref-card">
-          <img src="../public/img/iconFamiliar.png" alt="Auto Familiar">
+          <img src="./public/img/iconFamiliar.png" alt="Auto Familiar">
           <h3>Familiar</h3>
           <p>Libertad total</p>
         </div>
@@ -235,10 +235,10 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
   </footer>
 
 
-<script src="carrusel.js"></script>
-<script src="carrusel-promos.js"></script>
-<script src="../src/CRUD/autos.js"></script>
-<script src="header.js"></script>
-<script src="../src/CRUD/autos.js"></script>
+<script src="./views/carrusel.js"></script>
+<script src="./views/carrusel-promos.js"></script>
+<script src="./src/CRUD/autos.js"></script>
+<script src="./views/header.js"></script>
+<script src="./src/CRUD/autos.js"></script>
 </body>
 </html>
