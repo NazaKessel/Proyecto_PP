@@ -61,6 +61,11 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
             <p>Hola, <?= htmlspecialchars($_SESSION["usuario"]) ?></p>
             <form action="./views/logout.php" method="post">
               <button type="submit" class="logout-btn">Cerrar sesión</button>
+              <!-- solo el usuario ve este boton -->
+<?php if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] !== "admin"): ?>
+
+      <button type="button" class="admin-btn" onclick="location.href='./views/misPedidos.php'">Mis pedidos</button>
+  <?php endif; ?>
             </form>
           
             <?php if (isset($_SESSION["usuario"]) && $_SESSION["usuario"] === "admin"): ?>
