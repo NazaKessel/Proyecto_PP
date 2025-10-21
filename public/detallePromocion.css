@@ -8,7 +8,8 @@ body {
 .detalle-container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 900px;
+    justify-content: center;
+    max-width: 1000px;
     margin: 40px auto;
     background: #fff;
     border-radius: 15px;
@@ -16,20 +17,32 @@ body {
     overflow: hidden;
 }
 
+/* Imagen */
+.detalle-imagen {
+    flex: 1 1 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f3f3f3;
+}
 .detalle-imagen img {
     width: 100%;
-    max-width: 450px;
     height: auto;
-    display: block;
+    object-fit: cover;
 }
 
+/* Información */
 .detalle-info {
-    flex: 1;
+    flex: 1 1 400px;
     padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .detalle-info h2 {
     margin-bottom: 10px;
+    font-size: 1.8rem;
 }
 
 .detalle-info p {
@@ -37,34 +50,108 @@ body {
     line-height: 1.5;
 }
 
+/* Formulario */
 form {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 input[type="date"] {
-    margin: 5px 0 15px;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 8px;
+    font-size: 1rem;
 }
 
 .btn-reservar {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
+    transition: background 0.3s;
 }
 
 .btn-reservar:hover {
     background-color: #0056b3;
 }
 
+.btn-volver {
+    text-align: center;
+    margin-top: 10px;
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-volver:hover {
+    text-decoration: underline;
+}
+
+.total {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 .login-msg {
     color: #444;
     margin-top: 20px;
+}
+
+/* 🔹 Responsividad */
+@media (max-width: 900px) {
+    .detalle-container {
+        flex-direction: column;
+        margin: 20px;
+    }
+
+    .detalle-imagen img {
+        max-height: 350px;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .detalle-info {
+        padding: 20px;
+    }
+
+    .detalle-info h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .detalle-info {
+        padding: 15px;
+    }
+
+    .detalle-info h2 {
+        font-size: 1.4rem;
+    }
+
+    input[type="date"], .btn-reservar {
+        font-size: 0.9rem;
+    }
+
+    .detalle-imagen img {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    .detalle-info {
+        padding: 10px;
+    }
+
+    .detalle-info h2 {
+        font-size: 1.2rem;
+    }
+
+    .btn-reservar {
+        padding: 10px;
+    }
 }

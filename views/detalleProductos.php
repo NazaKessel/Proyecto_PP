@@ -28,15 +28,16 @@ if (!$auto) {
   <title><?= htmlspecialchars($auto['marca'] . ' ' . $auto['modelo']) ?></title>
   <link rel="stylesheet" href="../adminlte/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="../adminlte/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../public/detalleProductos.css">
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
   <div class="content-wrapper">
     <section class="content mt-4">
       <div class="container">
-        <div class="card mx-auto shadow" style="max-width: 600px;">
-          <img src="../src/DB/verImagen.php?img=<?= urlencode($auto['foto']) ?>" class="card-img-top" alt="">
-          <div class="card-body">
+        <div class="card mx-auto shadow detalle-card">
+          <img src="../src/DB/verImagen.php?img=<?= urlencode($auto['foto']) ?>" class="card-img-top detalle-img" alt="">
+          <div class="card-body detalle-body">
             <h3 class="text-danger"><?= htmlspecialchars($auto['marca'] . ' ' . $auto['modelo']) ?></h3>
             <p><strong>Año:</strong> <?= $auto['anio'] ?></p>
             <p><strong>Color:</strong> <?= htmlspecialchars($auto['color']) ?></p>
@@ -46,7 +47,7 @@ if (!$auto) {
             <?php if (isset($_SESSION["usuario"])): ?>
               <hr>
               <h5 class="text-danger">Reservar este auto</h5>
-              <form action="reservar.php" method="POST" onsubmit="return validarFormulario()">
+              <form action="reservar.php" method="POST" onsubmit="return validarFormulario()" class="detalle-form">
                 <input type="hidden" name="auto_id" value="<?= $auto['id'] ?>">
 
                 <div class="mb-3">
@@ -67,12 +68,12 @@ if (!$auto) {
                 <p id="total_texto" class="text-success font-weight-bold"></p>
 
                 <button type="submit" class="btn btn-danger btn-block">Confirmar Reserva</button>
-                <a class="btn btn-secondary btn-block" href="index.php">Volver atrás</a>
+                <a class="btn btn-secondary btn-block" href="../index.php">Volver atrás</a>
               </form>
             <?php else: ?>
               <div class="alert alert-warning mt-3">
                 Debes <a href="login.php">iniciar sesión</a> para reservar este auto.
-                <a href="index.php">Volver atrás</a>
+                <a href="../index.php">Volver atrás</a>
               </div>
             <?php endif; ?>
           </div>
@@ -82,7 +83,6 @@ if (!$auto) {
   </div>
 </div>
 
-<!-- ================== SCRIPT ================== -->
 <script>
 const inicio = document.getElementById('fecha_inicio');
 const fin = document.getElementById('fecha_fin');
@@ -90,7 +90,6 @@ const totalInput = document.getElementById('precio_total');
 const totalTexto = document.getElementById('total_texto');
 const precioDia = <?= $auto['precio']; ?>;
 
-// 🔹 Calcula el total sin símbolo "$" en el input
 function actualizarTotal() {
   if (!inicio.value || !fin.value) {
     totalInput.value = '';
@@ -107,17 +106,12 @@ function actualizarTotal() {
     return;
   }
 
-  const diff = (f2 - f1) / (1000 * 60 * 60 * 24); // diferencia en días
+  const diff = (f2 - f1) / (1000 * 60 * 60 * 24);
   const total = diff * precioDia;
-
-  // ✅ Solo número en el input (sin $)
   totalInput.value = total.toFixed(2);
-
-  // 💬 Mostrar al usuario con formato
   totalTexto.textContent = `💰 Total estimado: $${total.toFixed(2)} (${diff} días)`;
 }
 
-// 🔹 Validar formulario antes de enviar
 function validarFormulario() {
   const f1 = new Date(inicio.value);
   const f2 = new Date(fin.value);
@@ -126,16 +120,13 @@ function validarFormulario() {
     alert('Debes seleccionar ambas fechas.');
     return false;
   }
-
   if (f2 <= f1) {
     alert('La fecha de devolución debe ser posterior a la de retiro.');
     return false;
   }
-
   return true;
 }
 
-// Recalcular total al cambiar fechas
 inicio.addEventListener('change', actualizarTotal);
 fin.addEventListener('change', actualizarTotal);
 </script>

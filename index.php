@@ -147,8 +147,7 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
     <section class="banner-2" id="servicios">
       <div class="banner-2-content">
         <h2>Conduce sin preocupaciones</h2>
-        <p>Ofrecemos el mejor servicio de alquiler con beneficios únicos para vos, descubre mas:</p>
-        <button class="btn">Promos</button>
+        <p>Ofrecemos el mejor servicio de alquiler con beneficios únicos para vos, descubre mas.</p>
       </div>
       <img src="./public/img/208Promo.png" alt="Servicio">
     </section>
@@ -203,27 +202,7 @@ $promociones = $sqlPromo->fetchAll(PDO::FETCH_ASSOC);
 </section>
 
 
-    <!-- Preferencias -->
-    <section class="preferencias">
-      <h2 class="section-title">¿Qué prefieres?</h2>
-      <div class="preferencias-grid">
-        <div class="pref-card">
-          <img src="./public/img/iconAuto.png" alt="Auto">
-          <h3>Autos</h3>
-          <p>Comodidad diaria</p>
-        </div>
-        <div class="pref-card">
-          <img src="./public/img/iconCamioneta.png" alt="Camioneta">
-          <h3>Camionetas</h3>
-          <p>Potencia segura</p>
-        </div>
-        <div class="pref-card">
-          <img src="./public/img/iconFamiliar.png" alt="Auto Familiar">
-          <h3>Familiar</h3>
-          <p>Libertad total</p>
-        </div>
-      </div>
-    </section>
+
 
   </main>
 

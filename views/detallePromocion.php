@@ -37,12 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha_inicio = $_POST['fecha_inicio'];
     $fecha_fin = $_POST['fecha_fin'];
 
-    // Calcular cantidad de días
     $dias = (strtotime($fecha_fin) - strtotime($fecha_inicio)) / 86400;
     if ($dias <= 0) {
         echo "<script>alert('Las fechas no son válidas.');</script>";
     } else {
-        // 🔹 Verificar si el auto ya está reservado en ese rango
         $check = "SELECT * FROM pedidos 
                   WHERE auto_id = :auto_id 
                   AND estado != 'cancelado'
@@ -60,14 +58,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $precio_total = $promo['precio'] * $dias;
 
-            // Obtener id del usuario logueado
             $sql_user = "SELECT id FROM usuarios WHERE nombre = :nombre";
             $stmt_user = $conn->prepare($sql_user);
             $stmt_user->bindParam(':nombre', $_SESSION['usuario']);
             $stmt_user->execute();
             $usuario = $stmt_user->fetch(PDO::FETCH_ASSOC);
 
-            // 🔹 Insertar pedido
             $insert = "INSERT INTO pedidos (usuario_id, auto_id, fecha_inicio, fecha_fin, precio_total, estado, creado_en) 
                        VALUES (:usuario_id, :auto_id, :fecha_inicio, :fecha_fin, :precio_total, 'pendiente', NOW())";
             $stmt_insert = $conn->prepare($insert);
@@ -78,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt_insert->bindParam(':precio_total', $precio_total);
             $stmt_insert->execute();
 
-            // 🔹 Marcar el auto como no disponible
             $update_auto = "UPDATE autos SET disponible = 0 WHERE id = :auto_id";
             $stmt_update = $conn->prepare($update_auto);
             $stmt_update->bindParam(':auto_id', $auto_id);
@@ -95,6 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de Promoción</title>
     <link rel="stylesheet" href="../public/detallePromocion.css">
 </head>
@@ -118,10 +114,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label>Fecha de fin:</label>
                 <input type="date" name="fecha_fin" id="fecha_fin" required>
 
-                <p id="total" style="font-weight:bold; margin-top:10px;"></p>
+                <p id="total" class="total"></p>
 
                 <button type="submit" class="btn-reservar">Reservar</button>
-                <a href="../index.php">Volver atrás</a>
+                <a href="../index.php" class="btn-volver">Volver atrás</a>
             </form>
 
             <script>
@@ -147,11 +143,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </script>
         <?php else: ?>
             <p class="login-msg">🔒 Debes <a href="login.php">iniciar sesión</a> para reservar.</p>
-            <a href="../index.php">Volver atrás</a>
+            <a href="../index.php" class="btn-volver">Volver atrás</a>
         <?php endif; ?>
     </div>
 </div>
 
 </body>
 </html>
-

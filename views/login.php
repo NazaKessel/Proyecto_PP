@@ -73,6 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="row">
           <div class="col-12">
             <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+            <a href="../index.php">Volver atras</a>
           </div>
         </div>
       </form>

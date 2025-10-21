@@ -1,0 +1,200 @@
+/* =========================
+   DETALLE DE AUTO — DISEÑO LIMPIO Y FULL WIDTH
+   ========================= */
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Tarjeta principal */
+.detalle-card {
+  width: 100%;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Imagen del auto */
+.detalle-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  background-color: #ddd;
+}
+
+/* Contenido interno */
+.detalle-body {
+  padding: 25px 30px;
+}
+
+.detalle-body h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #d32f2f;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.detalle-body p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+/* Formulario */
+.detalle-form {
+  margin-top: 20px;
+}
+
+.detalle-form label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.detalle-form input[type="date"],
+.detalle-form input[type="text"] {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  transition: border 0.2s;
+}
+
+.detalle-form input:focus {
+  border-color: #d32f2f;
+  outline: none;
+  box-shadow: 0 0 3px rgba(211, 47, 47, 0.25);
+}
+
+/* Texto del total */
+#total_texto {
+  text-align: center;
+  font-size: 1.05rem;
+  margin-top: 10px;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* Botones */
+.detalle-form .btn {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.1s ease;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background-color: #d32f2f;
+  border: none;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #b71c1c;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #9e9e9e;
+  border: none;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #757575;
+  transform: translateY(-1px);
+}
+
+/* Alerta */
+.alert {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1rem;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.alert a {
+  color: #d32f2f;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .detalle-card {
+    max-width: 95%;
+  }
+
+  .detalle-body h3 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+  body {
+    background-color: #fff;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .detalle-card {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .detalle-img {
+    height: 230px;
+  }
+
+  .detalle-body {
+    padding: 18px 16px;
+  }
+
+  .detalle-body h3 {
+    font-size: 1.5rem;
+  }
+
+  .detalle-form input {
+    font-size: 0.9rem;
+  }
+
+  .detalle-form .btn {
+    font-size: 1rem;
+  }
+}
+
+

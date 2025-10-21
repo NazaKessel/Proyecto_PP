@@ -54,7 +54,7 @@ $stmt_insert = $conn->prepare($sql_insert);
 // PDO: Ejecutamos pasando el array de parámetros
 if ($stmt_insert->execute($parametros)) {
     // Redirigir al index al completar el registro
-    header("Location: ../../views/index.php");
+    header("Location: ../../index.php");
     exit();
 } else {
     // Mostrar detalles del error de PDO si la inserción falla
