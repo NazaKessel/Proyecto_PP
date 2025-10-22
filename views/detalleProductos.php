@@ -1,13 +1,20 @@
 <?php
+// 🧩 INICIO DE SESIÓN Y CONEXIÓN A LA BASE DE DATOS
 session_start();
 include("../src/DB/conexion.php");
 $db = new Database();
 $conn = $db->conectar();
 
+
+// 🔍 VALIDACIÓN DEL PARÁMETRO "id"
+
+// Si no se recibe el ID del auto, se redirige a la lista general
 if (!isset($_GET['id'])) {
   header("Location: autos.php");
   exit;
 }
+
+// 🚗 CONSULTA DEL AUTO SELECCIONADO EN LA BASE DE DATOS
 
 $id = $_GET['id'];
 $sql = "SELECT * FROM autos WHERE id = :id AND disponible = 1";
@@ -16,6 +23,7 @@ $stmt->bindParam(':id', $id);
 $stmt->execute();
 $auto = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Si no se encuentra el auto o no está disponible, se alerta al usuario
 if (!$auto) {
   echo "<script>alert('El auto no está disponible.'); window.location.href='autos.php';</script>";
   exit;
@@ -24,6 +32,7 @@ if (!$auto) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!--🧠 METADATOS Y ESTILOS -->
   <meta charset="UTF-8">
   <title><?= htmlspecialchars($auto['marca'] . ' ' . $auto['modelo']) ?></title>
   <link rel="stylesheet" href="../adminlte/plugins/fontawesome-free/css/all.min.css">
@@ -35,8 +44,11 @@ if (!$auto) {
   <div class="content-wrapper">
     <section class="content mt-4">
       <div class="container">
+        <!--🖼️ TARJETA CON DETALLE DEL AUTO -->
         <div class="card mx-auto shadow detalle-card">
-          <img src="../src/DB/verImagen.php?img=<?= urlencode($auto['foto']) ?>" class="card-img-top detalle-img" alt="">
+          <img src="../src/DB/verImagen.php?img=<?= urlencode($auto['foto']) ?>" 
+               class="card-img-top detalle-img" alt="">
+
           <div class="card-body detalle-body">
             <h3 class="text-danger"><?= htmlspecialchars($auto['marca'] . ' ' . $auto['modelo']) ?></h3>
             <p><strong>Año:</strong> <?= $auto['anio'] ?></p>
@@ -44,33 +56,48 @@ if (!$auto) {
             <p><strong>Patente:</strong> <?= htmlspecialchars($auto['patente']) ?></p>
             <p><strong>Precio por día:</strong> $<?= number_format($auto['precio'], 2) ?></p>
 
+            <!-- FORMULARIO DE RESERVA (solo si el usuario inició sesión) -->
             <?php if (isset($_SESSION["usuario"])): ?>
               <hr>
               <h5 class="text-danger">Reservar este auto</h5>
-              <form action="reservar.php" method="POST" onsubmit="return validarFormulario()" class="detalle-form">
+
+              <form action="reservar.php" method="POST" 
+                    onsubmit="return validarFormulario()" 
+                    class="detalle-form">
+
+                <!-- ID oculto del auto -->
                 <input type="hidden" name="auto_id" value="<?= $auto['id'] ?>">
 
+                <!-- Fecha de retiro -->
                 <div class="mb-3">
                   <label>Fecha de retiro:</label>
-                  <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
+                  <input type="date" id="fecha_inicio" name="fecha_inicio" 
+                         class="form-control" required>
                 </div>
 
+                <!-- Fecha de devolución -->
                 <div class="mb-3">
                   <label>Fecha de devolución:</label>
-                  <input type="date" id="fecha_fin" name="fecha_fin" class="form-control" required>
+                  <input type="date" id="fecha_fin" name="fecha_fin" 
+                         class="form-control" required>
                 </div>
 
+                <!-- Total estimado -->
                 <div class="mb-3">
                   <label>Total estimado:</label>
-                  <input type="text" id="precio_total" name="precio_total" class="form-control" readonly>
+                  <input type="text" id="precio_total" name="precio_total" 
+                         class="form-control" readonly>
                 </div>
 
                 <p id="total_texto" class="text-success font-weight-bold"></p>
 
+                <!-- Botones -->
                 <button type="submit" class="btn btn-danger btn-block">Confirmar Reserva</button>
                 <a class="btn btn-secondary btn-block" href="../index.php">Volver atrás</a>
               </form>
+
             <?php else: ?>
+              <!-- AVISO SI EL USUARIO NO INICIÓ SESIÓN-->
               <div class="alert alert-warning mt-3">
                 Debes <a href="login.php">iniciar sesión</a> para reservar este auto.
                 <a href="../index.php">Volver atrás</a>
@@ -83,6 +110,7 @@ if (!$auto) {
   </div>
 </div>
 
+<!-- SCRIPT PARA CALCULAR EL TOTAL Y VALIDAR EL FORMULARIO -->
 <script>
 const inicio = document.getElementById('fecha_inicio');
 const fin = document.getElementById('fecha_fin');
@@ -90,6 +118,7 @@ const totalInput = document.getElementById('precio_total');
 const totalTexto = document.getElementById('total_texto');
 const precioDia = <?= $auto['precio']; ?>;
 
+//  Función para calcular el total estimado según las fechas
 function actualizarTotal() {
   if (!inicio.value || !fin.value) {
     totalInput.value = '';
@@ -112,6 +141,8 @@ function actualizarTotal() {
   totalTexto.textContent = `💰 Total estimado: $${total.toFixed(2)} (${diff} días)`;
 }
 
+
+//  Función para validar el formulario antes de enviarlo
 function validarFormulario() {
   const f1 = new Date(inicio.value);
   const f2 = new Date(fin.value);
@@ -127,13 +158,14 @@ function validarFormulario() {
   return true;
 }
 
+// Actualiza el total al cambiar las fechas
 inicio.addEventListener('change', actualizarTotal);
 fin.addEventListener('change', actualizarTotal);
 </script>
 
+<!--📦 LIBRERÍAS JS EXTERNAS (AdminLTE, Bootstrap, jQuery)-->
 <script src="../adminlte/plugins/jquery/jquery.min.js"></script>
 <script src="../adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../adminlte/dist/js/adminlte.min.js"></script>
 </body>
 </html>
-

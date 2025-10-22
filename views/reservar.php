@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $usuario_id = $user['id'];
 
-  // 🔹 Insertar pedido (en lugar de reserva)
+  // 🔹 Insertar pedido 
   $sqlPedido = "INSERT INTO pedidos (usuario_id, auto_id, fecha_inicio, fecha_fin, precio_total, estado, creado_en)
                 VALUES (:usuario_id, :auto_id, :fecha_inicio, :fecha_fin, :precio_total, 'Pendiente', NOW())";
   $stmt = $conn->prepare($sqlPedido);
